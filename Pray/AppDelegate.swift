@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Pray
 //
-//  Created by 이주영 on 08/07/2016.
-//  Copyright © 2016 이주영. All rights reserved.
+//  Created by 이주영, 윤지훈 on 08/07/2016.
+//  Copyright © 2016 이주영, 윤지훈. All rights reserved.
 //
 
 import UIKit
