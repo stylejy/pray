@@ -43,6 +43,11 @@ class GroupManagement {
         let selectedGroup = groupList[inputGroupNum]
         selectedGroup.setGroupMemberName(inputMemberName)
     }
+    
+    func addPray(inputPray: String, inputMemberName: String, inputGroupNum: Int) {
+        let selectedGroup = groupList[inputGroupNum]
+        selectedGroup.setGroupMemberPray(inputMemberName, inputPray: inputPray)
+    }
 }
 
 let result = GroupManagement()
@@ -51,10 +56,16 @@ result.addGroup("킹스 기도모임")
 result.addGroup("런던대 연합 기도모임")
 
 result.addMember("이주영", inputGroupNum: 0)
+result.addPray("킹스 석사 주님께서 인도해 주세요.", inputMemberName: "이주영", inputGroupNum: 0)
+
 result.addMember("윤지훈", inputGroupNum: 0)
 
+result.addMember("이주영", inputGroupNum: 1)
 
-result.returnGroupList()[0]
+for iteratedResult in result.returnGroupList() {
+    print(iteratedResult.returnGroupName())
+    print(iteratedResult.returnGroupMembers())
+}
 
 
 
