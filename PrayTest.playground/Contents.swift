@@ -1,6 +1,24 @@
 //: Playground - noun: a place where people can play
-//어플 코드 테스트 목적입니다.
+//DB test
 
-import UIKit
+class GroupList {
+    var group: [String] = []
+    
+    func addGroup(name: String) {
+        group.append(name)
+    }
+    
+    func returnGroup() -> [String] {
+        return group
+    }
+}
 
-var str = "Hello, playground"
+let result = GroupList()
+
+result.addGroup("킹스크로스 한인교회")
+result.addGroup("킹스 기도모임")
+
+result.returnGroup()
+
+
+
