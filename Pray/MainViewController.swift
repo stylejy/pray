@@ -6,8 +6,6 @@
 //  Copyright © 2016 이주영, 윤지훈. All rights reserved.
 //
 
-//  This is a test.
-
 import UIKit
 
 class ViewController: UIViewController {
