@@ -56,9 +56,11 @@ result.addGroup("킹스 기도모임")
 result.addGroup("런던대 연합 기도모임")
 
 result.addMember("이주영", inputGroupNum: 0)
-result.addPray("킹스 석사 주님께서 인도해 주세요.", inputMemberName: "이주영", inputGroupNum: 0)
-
 result.addMember("윤지훈", inputGroupNum: 0)
+
+result.addPray("킹스 석사 주님께서 인도해 주세요.", inputMemberName: "이주영", inputGroupNum: 0)
+result.addPray("학교 애들이 말좀 잘 알아 먹게 해주세요.", inputMemberName: "윤지훈", inputGroupNum: 0)
+
 
 result.addMember("이주영", inputGroupNum: 1)
 
