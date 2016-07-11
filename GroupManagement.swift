@@ -49,7 +49,7 @@ class GroupManagement {
         return groupList
     }
     
-    func numOfGroups() -> Int {
+    func returnNumOfGroups() -> Int {
         return groupList.count
     }
     

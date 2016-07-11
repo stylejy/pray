@@ -11,11 +11,9 @@ import UIKit
 class GroupTableViewController: UITableViewController {
     let groupResults = GroupManagement()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,7 +23,7 @@ class GroupTableViewController: UITableViewController {
 
     //Returns the number of the groups added.
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupResults.numOfGroups()
+        return groupResults.returnNumOfGroups()
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -34,7 +32,7 @@ class GroupTableViewController: UITableViewController {
         //** need to understand
         let label = cell.viewWithTag(1000) as! UILabel
         
-        let numOfGroups = groupResults.numOfGroups()
+        let numOfGroups = groupResults.returnNumOfGroups()
         
         var tableStartingNumber = 0
         for value in groupResults.returnGroupList() {
