@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--중보기도-->
+        <!--기도 그룹-->
         <scene sceneID="MB2-3Y-BVD">
             <objects>
                 <tableViewController id="m2A-Ps-2Qb" customClass="GroupTableViewController" customModule="Pray" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W9Q-j2-O3T" id="Jg7-fY-YhV">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="918-Ek-kYU">
@@ -36,11 +36,75 @@
                             <outlet property="delegate" destination="m2A-Ps-2Qb" id="QjB-gD-HPf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="중보기도" id="Qew-bB-iIV"/>
+                    <navigationItem key="navigationItem" title="기도 그룹" id="Qew-bB-iIV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bDV-mC-49I">
+                            <connections>
+                                <action selector="addGroup" destination="m2A-Ps-2Qb" id="DKe-Jq-APi"/>
+                                <segue destination="y24-8U-3fB" kind="popoverPresentation" popoverAnchorBarButtonItem="bDV-mC-49I" id="LrS-EX-OsL">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTx-jq-rFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2111" y="418"/>
+        </scene>
+        <!--그룹 추가-->
+        <scene sceneID="Sov-fN-CNf">
+            <objects>
+                <tableViewController id="pHX-Gn-sf4" customClass="AddGroupViewController" customModule="Pray" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="GJV-mO-fPF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="wCP-hK-ZnB">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="j33-ym-ggJ">
+                                        <rect key="frame" x="0.0" y="99" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j33-ym-ggJ" id="gp2-Ab-4Hs">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="그룹 이름을 입력 하세요." textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uUz-JB-WSO">
+                                                    <rect key="frame" x="8" y="8" width="584" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="doneButton" destination="pHX-Gn-sf4" eventType="editingDidEndOnExit" id="HAn-PH-ZrM"/>
+                                                        <outlet property="delegate" destination="pHX-Gn-sf4" id="57f-iX-f9n"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="pHX-Gn-sf4" id="qap-GQ-1oB"/>
+                            <outlet property="delegate" destination="pHX-Gn-sf4" id="bmZ-k1-8lt"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="그룹 추가" id="Vvv-ME-mAF">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="CtM-r5-kb9">
+                            <connections>
+                                <action selector="cancelButton" destination="pHX-Gn-sf4" id="cY4-Q3-Wfo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="QjH-O1-Jhb"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneBarButton" destination="QjH-O1-Jhb" id="LPY-S3-k79"/>
+                        <outlet property="textField" destination="uUz-JB-WSO" id="tsp-NL-ADW"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T3Q-NK-ZVR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3762" y="418"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="azG-Jv-KkW">
@@ -59,6 +123,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dtG-o9-nu8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1299" y="418"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Vzh-lV-hc1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="y24-8U-3fB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VQp-jt-O6G">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pHX-Gn-sf4" kind="relationship" relationship="rootViewController" id="tlf-AL-18S"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aGI-8D-vzc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2950" y="418"/>
         </scene>
     </scenes>
 </document>
