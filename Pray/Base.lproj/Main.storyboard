@@ -40,7 +40,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bDV-mC-49I">
                             <connections>
                                 <action selector="addGroup" destination="m2A-Ps-2Qb" id="DKe-Jq-APi"/>
-                                <segue destination="y24-8U-3fB" kind="popoverPresentation" popoverAnchorBarButtonItem="bDV-mC-49I" id="LrS-EX-OsL">
+                                <segue destination="y24-8U-3fB" kind="popoverPresentation" identifier="AddGroup" popoverAnchorBarButtonItem="bDV-mC-49I" id="LrS-EX-OsL">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -74,7 +74,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
-                                                        <action selector="doneButton" destination="pHX-Gn-sf4" eventType="editingDidEndOnExit" id="HAn-PH-ZrM"/>
+                                                        <action selector="doneButton" destination="pHX-Gn-sf4" eventType="editingDidEndOnExit" id="QrV-nH-TBK"/>
                                                         <outlet property="delegate" destination="pHX-Gn-sf4" id="57f-iX-f9n"/>
                                                     </connections>
                                                 </textField>
@@ -95,7 +95,11 @@
                                 <action selector="cancelButton" destination="pHX-Gn-sf4" id="cY4-Q3-Wfo"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="QjH-O1-Jhb"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="QjH-O1-Jhb">
+                            <connections>
+                                <action selector="doneButton" destination="pHX-Gn-sf4" id="h1E-LQ-Z7O"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="doneBarButton" destination="QjH-O1-Jhb" id="LPY-S3-k79"/>

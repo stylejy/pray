@@ -16,7 +16,7 @@ class GroupManagement {
         addGroup("킹스크로스 한인교회")
         addGroup("킹스 기도모임")
         addGroup("런던대 연합 기도모임")
-        print(returnNumOfGroups())
+        //print("Group Management says \(returnNumOfGroups())")
     }
     
     func addGroup(inputGroupName: String) {

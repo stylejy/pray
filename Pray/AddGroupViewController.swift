@@ -8,24 +8,28 @@
 
 import UIKit
 
+protocol AddGroupViewControllerDelegate: class {
+    func addGroupViewControllerDidCancel(controller: AddGroupViewController)
+    func addGroupViewController(controller: AddGroupViewController, didFinishAddingValue value: String)
+}
+
 class AddGroupViewController: UITableViewController, UITextFieldDelegate {
     
     let groupResults = GroupTableViewController().groupResults
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    
+    weak var delegate: AddGroupViewControllerDelegate?
 
     
     @IBAction func cancelButton() {
-        dismissViewControllerAnimated(true, completion: nil)
+        delegate?.addGroupViewControllerDidCancel(self)
     }
     
     
     @IBAction func doneButton() {
-        print("Input group name is: \(textField.text!)")
-        groupResults.addGroup(textField.text!)
-        print(groupResults.returnNumOfGroups())
-        dismissViewControllerAnimated(true, completion: nil)
+        delegate?.addGroupViewController(self, didFinishAddingValue: textField.text!)
     }
     
     //Prevents the text field turning grey.

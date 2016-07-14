@@ -8,8 +8,33 @@
 
 import UIKit
 
-class GroupTableViewController: UITableViewController {
+class GroupTableViewController: UITableViewController, AddGroupViewControllerDelegate {
+  
     let groupResults = GroupManagement()
+
+    func addGroupViewControllerDidCancel(controller: AddGroupViewController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func addGroupViewController(controller: AddGroupViewController, didFinishAddingValue value: String) {
+        groupResults.addGroup(value)
+    
+        
+        for results in groupResults.returnGroupList() {
+            print(results.returnGroupName())
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "AddGroup" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            
+            let controller = navigationController.topViewController as! AddGroupViewController
+            
+            controller.delegate = self
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +69,8 @@ class GroupTableViewController: UITableViewController {
         
         return cell
     }
+    
+    
 
 }
 
