@@ -16,13 +16,22 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    //**Have to understand
     func addGroupViewController(controller: AddGroupViewController, didFinishAddingValue value: String) {
-        groupResults.addGroup(value)
-    
         
-        for results in groupResults.returnGroupList() {
+        //newRowIndex must be placed before the adding function to return the proper number for the new row index.
+        let newRowIndex = groupResults.returnNumOfGroups()
+        groupResults.addGroup(value)
+        
+        //For testing.
+        /*for results in groupResults.returnGroupList() {
             print(results.returnGroupName())
-        }
+        }*/
+        
+        let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        
         dismissViewControllerAnimated(true, completion: nil)
     }
     
