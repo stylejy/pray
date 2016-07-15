@@ -13,9 +13,7 @@ class GroupManagement {
     
     init() {
         //for testing
-        addGroup("킹스크로스 한인교회")
-        addGroup("킹스 기도모임")
-        addGroup("런던대 연합 기도모임")
+        addGroup("이 셀을 왼쪽으로 밀면 삭제 버튼이 나옵니다.")
         //print("Group Management says \(returnNumOfGroups())")
     }
     
