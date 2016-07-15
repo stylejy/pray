@@ -79,7 +79,13 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         return cell
     }
     
-    
+    //Added group deleting function by swiping over a row.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        groupResults.removeGroup(indexPath.row)
+        
+        let indexPaths = [indexPath]
+        tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    }
 
 }
 

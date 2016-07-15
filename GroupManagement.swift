@@ -42,4 +42,8 @@ class GroupManagement {
         let selectedGroup = groupList[inputGroupNum]
         selectedGroup.setGroupMemberPray(inputMemberName, inputPray: inputPray)
     }
+    
+    func removeGroup(inputIndexPath: Int) {
+        groupList.removeAtIndex(inputIndexPath)
+    }
 }
