@@ -34,6 +34,15 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /*func addItemViewController(controller: AddGroupViewController, didFinishEditingItem value: String) {
+        if let index = groupResults.returnGroupList().indexOf(item) {
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                configureTextForCell(cell, withChecklistItem: item) }
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }*/
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "AddGroup" {
             let navigationController = segue.destinationViewController as! UINavigationController
@@ -41,6 +50,16 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
             let controller = navigationController.topViewController as! AddGroupViewController
             
             controller.delegate = self
+        } else if segue.identifier == "EditGroupName" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            
+            let controller = navigationController.topViewController as! AddGroupViewController
+            
+            controller.delegate = self
+            
+            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+                controller.groupToEdit = groupResults.returnGroupList()[indexPath.row]
+            }
         }
     }
     
@@ -78,7 +97,7 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         return cell
     }
     
-    //Added group deleting function by swiping over a row.
+    //Group deleting function by swiping over a row.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         groupResults.removeGroup(indexPath.row)
         

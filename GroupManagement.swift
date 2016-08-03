@@ -31,6 +31,10 @@ class GroupManagement {
         return groupList.count
     }
     
+    /*func returnIndex(inputGroupName) -> Int {
+        
+    }*/
+    
     func addMember(inputMemberName: String, inputGroupNum: Int) {
         let selectedGroup = groupList[inputGroupNum]
         selectedGroup.setGroupMemberName(inputMemberName)

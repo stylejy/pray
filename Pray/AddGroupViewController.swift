@@ -11,9 +11,12 @@ import UIKit
 protocol AddGroupViewControllerDelegate: class {
     func addGroupViewControllerDidCancel(controller: AddGroupViewController)
     func addGroupViewController(controller: AddGroupViewController, didFinishAddingValue value: String)
+    //func addGroupViewController(controller: AddGroupViewController, didFinishEditingValue value: String)
 }
 
 class AddGroupViewController: UITableViewController, UITextFieldDelegate {
+    
+    var groupToEdit: GroupModel?
     
     let groupResults = GroupTableViewController().groupResults
     
@@ -29,7 +32,12 @@ class AddGroupViewController: UITableViewController, UITextFieldDelegate {
     
     
     @IBAction func doneButton() {
-        delegate?.addGroupViewController(self, didFinishAddingValue: textField.text!)
+        /*if let group = groupToEdit {
+            group.setGroupName(textField.text!)
+            delegate?.addGroupViewController(self, didFinishEditingValue: textField.text!)
+        } else {*/
+            delegate?.addGroupViewController(self, didFinishAddingValue: textField.text!)
+        //}
     }
     
     //Prevents the text field turning grey.
@@ -60,4 +68,13 @@ class AddGroupViewController: UITableViewController, UITextFieldDelegate {
         return true
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let group = groupToEdit {
+            title = "그룹 이름 변경"
+            textField.text = group.returnGroupName()
+            doneBarButton.enabled = true
+        }
+    }
 }
