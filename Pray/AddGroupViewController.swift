@@ -11,7 +11,7 @@ import UIKit
 protocol AddGroupViewControllerDelegate: class {
     func addGroupViewControllerDidCancel(controller: AddGroupViewController)
     func addGroupViewController(controller: AddGroupViewController, didFinishAddingValue value: String)
-    //func addGroupViewController(controller: AddGroupViewController, didFinishEditingValue value: String)
+    func addGroupViewController(controller: AddGroupViewController, didFinishEditingValue value: String)
 }
 
 class AddGroupViewController: UITableViewController, UITextFieldDelegate {
@@ -32,12 +32,12 @@ class AddGroupViewController: UITableViewController, UITextFieldDelegate {
     
     
     @IBAction func doneButton() {
-        /*if let group = groupToEdit {
+        if let group = groupToEdit {
             group.setGroupName(textField.text!)
             delegate?.addGroupViewController(self, didFinishEditingValue: textField.text!)
-        } else {*/
+        } else {
             delegate?.addGroupViewController(self, didFinishAddingValue: textField.text!)
-        //}
+        }
     }
     
     //Prevents the text field turning grey.

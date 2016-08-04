@@ -16,6 +16,7 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
     }
     
     //**Have to understand
+    //For adding new group
     func addGroupViewController(controller: AddGroupViewController, didFinishAddingValue value: String) {
         
         //newRowIndex must be placed before the adding function to return the proper number for the new row index.
@@ -34,14 +35,19 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    /*func addItemViewController(controller: AddGroupViewController, didFinishEditingItem value: String) {
-        if let index = groupResults.returnGroupList().indexOf(item) {
+    //For editing a group's name
+    func addGroupViewController(controller: AddGroupViewController, didFinishEditingValue value: String) {
+        //parameter value 는 바뀐 이름을 전송해 주고 groupResults.returnIndex(value)는 원래 선택 되었던 셀의 index 를 리턴해 준다.
+        if let index = groupResults.returnIndex(value) {
+            //Database 상의 바뀐 이름은 바로 적용이 되나, 보여지는 셀에서는 아래와 같이 해줘야 업데이트가 된다.
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
             if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-                configureTextForCell(cell, withChecklistItem: item) }
+                let label = cell.viewWithTag(1000) as! UILabel
+                label.text = value
+            }
         }
         dismissViewControllerAnimated(true, completion: nil)
-    }*/
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "AddGroup" {

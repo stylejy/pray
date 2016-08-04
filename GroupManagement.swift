@@ -31,9 +31,18 @@ class GroupManagement {
         return groupList.count
     }
     
-    /*func returnIndex(inputGroupName) -> Int {
-        
-    }*/
+    //For editing group name
+    func returnIndex(inputGroupName: String) -> Int! {
+        var count = 0
+        for value in groupList {
+            if value.returnGroupName() == inputGroupName {
+                return count
+            } else {
+                count = count + 1
+            }
+        }
+        return nil
+    }
     
     func addMember(inputMemberName: String, inputGroupNum: Int) {
         let selectedGroup = groupList[inputGroupNum]
