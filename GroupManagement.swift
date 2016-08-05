@@ -7,19 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 class GroupManagement {
     var groupList: [GroupModel] = []
-    
-    init() {
-        //for testing
-        addGroup("이 셀을 왼쪽으로 밀면 삭제 버튼이 나옵니다.")
-        //print("Group Management says \(returnNumOfGroups())")
-    }
-    
+   
     func addGroup(inputGroupName: String) {
         let newGroup = GroupModel()
-        newGroup.setGroupName(inputGroupName)
+        newGroup.giveGroupName(inputGroupName)
         groupList.append(newGroup)
     }
     
@@ -46,15 +41,16 @@ class GroupManagement {
     
     func addMember(inputMemberName: String, inputGroupNum: Int) {
         let selectedGroup = groupList[inputGroupNum]
-        selectedGroup.setGroupMemberName(inputMemberName)
+        selectedGroup.giveGroupMemberName(inputMemberName)
     }
     
     func addPray(inputPray: String, inputMemberName: String, inputGroupNum: Int) {
         let selectedGroup = groupList[inputGroupNum]
-        selectedGroup.setGroupMemberPray(inputMemberName, inputPray: inputPray)
+        selectedGroup.giveGroupMemberPray(inputMemberName, inputPray: inputPray)
     }
     
     func removeGroup(inputIndexPath: Int) {
         groupList.removeAtIndex(inputIndexPath)
     }
+    
 }

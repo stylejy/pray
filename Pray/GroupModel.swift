@@ -8,9 +8,18 @@
 
 import Foundation
 
-class GroupModel {
+class GroupModel: NSObject {
     var groupName: String = ""
     var groupMembers: [String: String] = [:]
+    
+    override init() {
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        groupName = aDecoder.decodeObjectForKey("GroupName") as! String
+        super.init()
+    }
     
     func returnGroupName() -> String {
         return groupName
@@ -20,15 +29,21 @@ class GroupModel {
         return groupMembers
     }
     
-    func setGroupName(inputName: String) {
+    func giveGroupName(inputName: String) {
         groupName = inputName
     }
     
-    func setGroupMemberName(inputName: String) {
+    func giveGroupMemberName(inputName: String) {
         groupMembers[inputName] = ""
     }
     
-    func setGroupMemberPray(inputName: String, inputPray: String) {
+    func giveGroupMemberPray(inputName: String, inputPray: String) {
         groupMembers.updateValue(inputPray, forKey: inputName)
     }
+    
+    //page p137-138
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(groupName, forKey: "GroupName")
+    }
+    
 }

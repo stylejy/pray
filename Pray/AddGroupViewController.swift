@@ -18,7 +18,7 @@ class AddGroupViewController: UITableViewController, UITextFieldDelegate {
     
     var groupToEdit: GroupModel?
     
-    let groupResults = GroupTableViewController().groupResults
+    let groupResults = GroupManagement()
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
@@ -33,7 +33,7 @@ class AddGroupViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func doneButton() {
         if let group = groupToEdit {
-            group.setGroupName(textField.text!)
+            group.giveGroupName(textField.text!)
             delegate?.addGroupViewController(self, didFinishEditingValue: textField.text!)
         } else {
             delegate?.addGroupViewController(self, didFinishAddingValue: textField.text!)

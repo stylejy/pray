@@ -10,6 +10,14 @@ import UIKit
 class GroupTableViewController: UITableViewController, AddGroupViewControllerDelegate {
   
     let groupResults = GroupManagement()
+    
+    required init?(coder aDecoder: NSCoder) {
+        //for testing
+        //print("Group Management says \(returnNumOfGroups())")
+        groupResults.groupList = [GroupModel]()
+        super.init(coder: aDecoder)
+        loadGroupList()
+    }
 
     func addGroupViewControllerDidCancel(controller: AddGroupViewController) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -33,6 +41,8 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
         
         dismissViewControllerAnimated(true, completion: nil)
+        
+        saveGroupList()
     }
     
     //For editing a group's name
@@ -47,6 +57,8 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
             }
         }
         dismissViewControllerAnimated(true, completion: nil)
+        
+        saveGroupList()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -109,6 +121,37 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         
         let indexPaths = [indexPath]
         tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        
+        saveGroupList()
+    }
+    
+    func documentsDirectory() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        return paths[0]
+    }
+    
+    func dataFilePath() -> String {
+        return (documentsDirectory() as NSString).stringByAppendingPathComponent("GroupList.plist")
+    }
+    
+    func saveGroupList() {
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+        archiver.encodeObject(groupResults.groupList, forKey: "GroupList")
+        archiver.finishEncoding()
+        data.writeToFile(dataFilePath(), atomically: true)
+    }
+    
+    func loadGroupList() {
+        let path = dataFilePath()
+        
+        if NSFileManager.defaultManager().fileExistsAtPath(path) {
+            if let data = NSData(contentsOfFile: path) {
+                let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+                groupResults.groupList = unarchiver.decodeObjectForKey("GroupList") as! [GroupModel]
+                unarchiver.finishDecoding()
+            }
+        }
     }
 
 }
