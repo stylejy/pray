@@ -61,6 +61,11 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         saveGroupList()
     }
     
+    //This method is used to go to the member list screen.
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("ShowMemberList", sender: tableView.cellForRowAtIndexPath(indexPath))
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "AddGroup" {
             let navigationController = segue.destinationViewController as! UINavigationController
@@ -77,6 +82,12 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
             
             if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
                 controller.groupToEdit = groupResults.returnGroupList()[indexPath.row]
+            }
+        } else if segue.identifier == "ShowMemberList" {
+            let controller = segue.destinationViewController as! MemberTableViewController
+            
+            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+                controller.parentsGroup = groupResults.returnGroupList()[indexPath.row]
             }
         }
     }

@@ -12,6 +12,7 @@
 		C127646B1D30242E006B219F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C12764691D30242E006B219F /* Main.storyboard */; };
 		C127646D1D30242E006B219F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C127646C1D30242E006B219F /* Assets.xcassets */; };
 		C12764701D30242E006B219F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C127646E1D30242E006B219F /* LaunchScreen.storyboard */; };
+		C1396D151D5535F00048F1FA /* MemberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1396D141D5535F00048F1FA /* MemberTableViewController.swift */; };
 		C13FB5C21D33D3AC0008A72F /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13FB5C11D33D3AC0008A72F /* GroupModel.swift */; };
 		C13FB5C41D33D3CB0008A72F /* GroupManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13FB5C31D33D3CB0008A72F /* GroupManagement.swift */; };
 		C13FB5C61D353A810008A72F /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13FB5C51D353A810008A72F /* AddGroupViewController.swift */; };
@@ -25,6 +26,7 @@
 		C127646C1D30242E006B219F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C127646F1D30242E006B219F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C12764711D30242E006B219F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1396D141D5535F00048F1FA /* MemberTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewController.swift; sourceTree = "<group>"; };
 		C13FB5C11D33D3AC0008A72F /* GroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		C13FB5C31D33D3CB0008A72F /* GroupManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupManagement.swift; path = ../GroupManagement.swift; sourceTree = "<group>"; };
 		C13FB5C51D353A810008A72F /* AddGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				C127646C1D30242E006B219F /* Assets.xcassets */,
 				C127646E1D30242E006B219F /* LaunchScreen.storyboard */,
 				C12764711D30242E006B219F /* Info.plist */,
+				C1396D141D5535F00048F1FA /* MemberTableViewController.swift */,
 			);
 			path = Pray;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 				C12764661D30242E006B219F /* AppDelegate.swift in Sources */,
 				C13FB5C41D33D3CB0008A72F /* GroupManagement.swift in Sources */,
 				C13FB5C21D33D3AC0008A72F /* GroupModel.swift in Sources */,
+				C1396D151D5535F00048F1FA /* MemberTableViewController.swift in Sources */,
 				C13FB5C61D353A810008A72F /* AddGroupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

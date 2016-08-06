@@ -15,6 +15,7 @@ class GroupManagement {
     func addGroup(inputGroupName: String) {
         let newGroup = GroupModel()
         newGroup.giveGroupName(inputGroupName)
+        newGroup.giveGroupMemberName("test")
         groupList.append(newGroup)
     }
     
@@ -24,6 +25,14 @@ class GroupManagement {
     
     func returnNumOfGroups() -> Int {
         return groupList.count
+    }
+    
+    func returnNumOfMembers(inputIndex: Int) -> Int {
+        return groupList[inputIndex].returnGroupMembers().count
+    }
+    
+    func returnMembers(inputIndex: Int) -> [String: String] {
+        return groupList[inputIndex].returnGroupMembers()
     }
     
     //For editing group name

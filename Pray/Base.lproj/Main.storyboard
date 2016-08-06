@@ -50,10 +50,32 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="BEG-T8-Ftr" kind="show" identifier="ShowMemberList" id="Wen-jb-Gs3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTx-jq-rFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2111" y="418"/>
+        </scene>
+        <!--(Name of the selected group)-->
+        <scene sceneID="2H2-J0-L2B">
+            <objects>
+                <tableViewController id="BEG-T8-Ftr" customClass="MemberTableViewController" customModule="Pray" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zMJ-Wk-4ZY">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="BEG-T8-Ftr" id="fwc-Xb-tEb"/>
+                            <outlet property="delegate" destination="BEG-T8-Ftr" id="7FL-r1-ZIS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="(Name of the selected group)" id="aBv-Z3-Xqf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gun-Vp-nmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2557" y="1363"/>
         </scene>
         <!--그룹 추가-->
         <scene sceneID="Sov-fN-CNf">
@@ -132,7 +154,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="m2A-Ps-2Qb" kind="relationship" relationship="rootViewController" id="C5T-u4-uzy"/>
+                        <segue destination="m2A-Ps-2Qb" kind="relationship" relationship="rootViewController" id="x7G-3c-RWU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dtG-o9-nu8" userLabel="First Responder" sceneMemberID="firstResponder"/>

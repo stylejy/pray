@@ -18,8 +18,6 @@ class AddGroupViewController: UITableViewController, UITextFieldDelegate {
     
     var groupToEdit: GroupModel?
     
-    let groupResults = GroupManagement()
-    
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     
