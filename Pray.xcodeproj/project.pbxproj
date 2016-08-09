@@ -16,6 +16,8 @@
 		C13FB5C21D33D3AC0008A72F /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13FB5C11D33D3AC0008A72F /* GroupModel.swift */; };
 		C13FB5C41D33D3CB0008A72F /* GroupManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13FB5C31D33D3CB0008A72F /* GroupManagement.swift */; };
 		C13FB5C61D353A810008A72F /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13FB5C51D353A810008A72F /* AddGroupViewController.swift */; };
+		C1435A091D5917DE003F2010 /* MemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1435A081D5917DE003F2010 /* MemberModel.swift */; };
+		C162CB001D563C7E00BB17AC /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C162CAFF1D563C7E00BB17AC /* AddMemberViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		C13FB5C11D33D3AC0008A72F /* GroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		C13FB5C31D33D3CB0008A72F /* GroupManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupManagement.swift; path = ../GroupManagement.swift; sourceTree = "<group>"; };
 		C13FB5C51D353A810008A72F /* AddGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupViewController.swift; sourceTree = "<group>"; };
+		C1435A081D5917DE003F2010 /* MemberModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberModel.swift; sourceTree = "<group>"; };
+		C162CAFF1D563C7E00BB17AC /* AddMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,18 +66,36 @@
 		C12764641D30242E006B219F /* Pray */ = {
 			isa = PBXGroup;
 			children = (
+				C16CC7C81D59DDE80061AB7A /* Controllers */,
+				C16CC7C71D59DD960061AB7A /* Models */,
 				C12764651D30242E006B219F /* AppDelegate.swift */,
-				C13FB5C51D353A810008A72F /* AddGroupViewController.swift */,
-				C12764671D30242E006B219F /* GroupTableViewController.swift */,
-				C13FB5C11D33D3AC0008A72F /* GroupModel.swift */,
 				C13FB5C31D33D3CB0008A72F /* GroupManagement.swift */,
 				C12764691D30242E006B219F /* Main.storyboard */,
 				C127646C1D30242E006B219F /* Assets.xcassets */,
 				C127646E1D30242E006B219F /* LaunchScreen.storyboard */,
 				C12764711D30242E006B219F /* Info.plist */,
-				C1396D141D5535F00048F1FA /* MemberTableViewController.swift */,
 			);
 			path = Pray;
+			sourceTree = "<group>";
+		};
+		C16CC7C71D59DD960061AB7A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C13FB5C11D33D3AC0008A72F /* GroupModel.swift */,
+				C1435A081D5917DE003F2010 /* MemberModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		C16CC7C81D59DDE80061AB7A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C13FB5C51D353A810008A72F /* AddGroupViewController.swift */,
+				C12764671D30242E006B219F /* GroupTableViewController.swift */,
+				C1396D141D5535F00048F1FA /* MemberTableViewController.swift */,
+				C162CAFF1D563C7E00BB17AC /* AddMemberViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,10 +170,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C162CB001D563C7E00BB17AC /* AddMemberViewController.swift in Sources */,
 				C12764681D30242E006B219F /* GroupTableViewController.swift in Sources */,
 				C12764661D30242E006B219F /* AppDelegate.swift in Sources */,
 				C13FB5C41D33D3CB0008A72F /* GroupManagement.swift in Sources */,
 				C13FB5C21D33D3AC0008A72F /* GroupModel.swift in Sources */,
+				C1435A091D5917DE003F2010 /* MemberModel.swift in Sources */,
 				C1396D151D5535F00048F1FA /* MemberTableViewController.swift in Sources */,
 				C13FB5C61D353A810008A72F /* AddGroupViewController.swift in Sources */,
 			);

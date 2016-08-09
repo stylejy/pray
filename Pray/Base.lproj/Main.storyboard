@@ -51,7 +51,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="BEG-T8-Ftr" kind="show" identifier="ShowMemberList" id="Wen-jb-Gs3"/>
+                        <segue destination="BEG-T8-Ftr" kind="show" identifier="ShowMemberList" id="wfs-kM-4fl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTx-jq-rFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -71,11 +71,19 @@
                             <outlet property="delegate" destination="BEG-T8-Ftr" id="7FL-r1-ZIS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="(Name of the selected group)" id="aBv-Z3-Xqf"/>
+                    <navigationItem key="navigationItem" title="(Name of the selected group)" id="aBv-Z3-Xqf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="J7Z-Ns-wGZ">
+                            <connections>
+                                <segue destination="Bzf-dJ-cdX" kind="popoverPresentation" identifier="AddMember" popoverAnchorBarButtonItem="J7Z-Ns-wGZ" id="XJY-5f-Jz5">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gun-Vp-nmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2557" y="1363"/>
+            <point key="canvasLocation" x="2111" y="1209"/>
         </scene>
         <!--그룹 추가-->
         <scene sceneID="Sov-fN-CNf">
@@ -136,6 +144,61 @@
             </objects>
             <point key="canvasLocation" x="3762" y="418"/>
         </scene>
+        <!--멤버 추가-->
+        <scene sceneID="dn7-oc-3ap">
+            <objects>
+                <tableViewController id="uIH-KQ-xhd" customClass="AddMemberViewController" customModule="Pray" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Rwh-Eg-Fgl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection id="jAf-9e-70i">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="V2N-lZ-odg">
+                                        <rect key="frame" x="0.0" y="99" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V2N-lZ-odg" id="lUu-p6-WaG">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="멤버 이름을 입력 하세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xlb-Oj-idJ">
+                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="uIH-KQ-xhd" id="tfa-uk-u9k"/>
+                            <outlet property="delegate" destination="uIH-KQ-xhd" id="q0e-ln-6HX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="멤버 추가" id="hvu-m5-cI7">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="53I-nk-IYs">
+                            <connections>
+                                <action selector="cancelBarButton" destination="uIH-KQ-xhd" id="jY9-KU-UVf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="Zn8-WJ-nZg">
+                            <connections>
+                                <action selector="doneButton" destination="uIH-KQ-xhd" id="0dr-SI-uE8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneBarButton" destination="Zn8-WJ-nZg" id="mGu-Es-0he"/>
+                        <outlet property="textField" destination="Xlb-Oj-idJ" id="mTN-6z-Aw5"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="afn-CR-7hO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3757" y="1199"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="azG-Jv-KkW">
             <objects>
@@ -185,8 +248,32 @@
             </objects>
             <point key="canvasLocation" x="2950" y="418"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PmP-XA-oeA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bzf-dJ-cdX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CEw-VT-Ufz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.51372549020000002" green="0.79215686269999996" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uIH-KQ-xhd" kind="relationship" relationship="rootViewController" id="8JU-sX-9Jd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8N7-WL-i2x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2945" y="1199"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Ngu-xf-kgq"/>
+        <segue reference="LrS-EX-OsL"/>
     </inferredMetricsTieBreakers>
 </document>

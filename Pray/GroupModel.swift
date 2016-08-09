@@ -9,8 +9,8 @@
 import Foundation
 
 class GroupModel: NSObject {
-    var groupName: String = ""
-    var groupMembers: [String: String] = [:]
+    var groupName = ""
+    var groupMembers = [MemberModel]()
     
     override init() {
         super.init()
@@ -18,6 +18,7 @@ class GroupModel: NSObject {
     
     required init?(coder aDecoder: NSCoder) {
         groupName = aDecoder.decodeObjectForKey("GroupName") as! String
+        groupMembers = aDecoder.decodeObjectForKey("GroupMembers") as! [MemberModel]
         super.init()
     }
     
@@ -25,25 +26,32 @@ class GroupModel: NSObject {
         return groupName
     }
     
-    func returnGroupMembers() -> [String: String] {
+    func returnGroupMembers() -> [MemberModel] {
         return groupMembers
+    }
+    
+    func returnNumOfMembers() -> Int {
+        return groupMembers.count
     }
     
     func giveGroupName(inputName: String) {
         groupName = inputName
     }
     
-    func giveGroupMemberName(inputName: String) {
-        groupMembers[inputName] = ""
+    func giveGroupMemberName(inputIndex: Int, inputName: String) {
+        let newMember = MemberModel()
+        newMember.name = inputName
+        groupMembers.append(newMember)
     }
     
-    func giveGroupMemberPray(inputName: String, inputPray: String) {
-        groupMembers.updateValue(inputPray, forKey: inputName)
+    func giveGroupMemberPray(inputIndex: Int, inputPrayer: String) {
+        groupMembers[inputIndex].prayers.append(inputPrayer)
     }
     
     //page p137-138
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(groupName, forKey: "GroupName")
+        aCoder.encodeObject(groupMembers, forKey: "GroupMembers")
     }
     
 }

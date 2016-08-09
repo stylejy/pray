@@ -8,13 +8,34 @@
 
 import UIKit
 
-class MemberTableViewController: UITableViewController {
+class MemberTableViewController: UITableViewController, AddMemberViewControllerDelegate {
     
-    var parentsGroup: GroupModel?
+    var parentGroup: GroupModel!
+    
+    func addMemberViewControllerDidCancel(controller: AddMemberViewController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func addMemberViewController(controller: AddMemberViewController, didFinishAddingValue value: String) {
+        
+        let newRowIndex = parentGroup.returnNumOfMembers()
+        
+        let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
+        parentGroup.giveGroupMemberName(indexPath.row, inputName: value)
+
+        let indexPaths = [indexPath]
+        tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func addMemberViewController(controller: AddMemberViewController, didFinishEditingValue value: String) {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = parentsGroup?.groupName
+        title = parentGroup.groupName
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -36,14 +57,17 @@ class MemberTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return parentGroup.groupMembers.count
     }
 
-    
+    //Need to understand...
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = cellForTableView(tableView)
-        //cell.textLabel!.text = groupResults.
-
+        
+        let memberList = parentGroup.groupMembers[indexPath.row]
+        
+        cell.textLabel!.text = memberList.name
+        
         return cell
     }
     
@@ -53,6 +77,16 @@ class MemberTableViewController: UITableViewController {
             return cell
         } else {
             return UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "AddMember" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            
+            let controller = navigationController.topViewController as! AddMemberViewController
+            
+            controller.delegate = self
         }
     }
 

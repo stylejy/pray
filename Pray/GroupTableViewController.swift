@@ -9,14 +9,11 @@ import UIKit
 
 class GroupTableViewController: UITableViewController, AddGroupViewControllerDelegate {
   
-    let groupResults = GroupManagement()
-    
+    var groupResults: GroupManagement!
     required init?(coder aDecoder: NSCoder) {
         //for testing
         //print("Group Management says \(returnNumOfGroups())")
-        groupResults.groupList = [GroupModel]()
         super.init(coder: aDecoder)
-        loadGroupList()
     }
 
     func addGroupViewControllerDidCancel(controller: AddGroupViewController) {
@@ -42,7 +39,6 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         
         dismissViewControllerAnimated(true, completion: nil)
         
-        saveGroupList()
     }
     
     //For editing a group's name
@@ -58,7 +54,6 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         }
         dismissViewControllerAnimated(true, completion: nil)
         
-        saveGroupList()
     }
     
     //This method is used to go to the member list screen.
@@ -81,13 +76,13 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
             controller.delegate = self
             
             if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
-                controller.groupToEdit = groupResults.returnGroupList()[indexPath.row]
+                controller.groupToEdit = groupResults!.returnGroupList()[indexPath.row]
             }
         } else if segue.identifier == "ShowMemberList" {
             let controller = segue.destinationViewController as! MemberTableViewController
             
             if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
-                controller.parentsGroup = groupResults.returnGroupList()[indexPath.row]
+                controller.parentGroup = groupResults!.returnGroupList()[indexPath.row]
             }
         }
     }
@@ -113,7 +108,7 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         //** need to understand
         let label = cell.viewWithTag(1000) as! UILabel
         
-        let numOfGroups = groupResults.returnNumOfGroups()
+        let numOfGroups = groupResults!.returnNumOfGroups()
         
         var tableStartingNumber = 0
         for value in groupResults.returnGroupList() {
@@ -133,37 +128,8 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         let indexPaths = [indexPath]
         tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
         
-        saveGroupList()
     }
     
-    func documentsDirectory() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        return paths[0]
-    }
-    
-    func dataFilePath() -> String {
-        return (documentsDirectory() as NSString).stringByAppendingPathComponent("GroupList.plist")
-    }
-    
-    func saveGroupList() {
-        let data = NSMutableData()
-        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-        archiver.encodeObject(groupResults.groupList, forKey: "GroupList")
-        archiver.finishEncoding()
-        data.writeToFile(dataFilePath(), atomically: true)
-    }
-    
-    func loadGroupList() {
-        let path = dataFilePath()
-        
-        if NSFileManager.defaultManager().fileExistsAtPath(path) {
-            if let data = NSData(contentsOfFile: path) {
-                let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-                groupResults.groupList = unarchiver.decodeObjectForKey("GroupList") as! [GroupModel]
-                unarchiver.finishDecoding()
-            }
-        }
-    }
-
+   
 }
 
