@@ -34,6 +34,18 @@ class GroupModel: NSObject {
         return groupMembers.count
     }
     
+    func returnIndex(inputGroupName: String) -> Int! {
+        var count = 0
+        for value in groupMembers {
+            if value.name == inputGroupName {
+                return count
+            } else {
+                count = count + 1
+            }
+        }
+        return nil
+    }
+    
     func giveGroupName(inputName: String) {
         groupName = inputName
     }
@@ -46,6 +58,10 @@ class GroupModel: NSObject {
     
     func giveGroupMemberPray(inputIndex: Int, inputPrayer: String) {
         groupMembers[inputIndex].prayers.append(inputPrayer)
+    }
+    
+    func removeMember(inputIndex: Int) {
+        groupMembers.removeAtIndex(inputIndex)
     }
     
     //page p137-138

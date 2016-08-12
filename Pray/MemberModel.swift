@@ -26,4 +26,8 @@ class MemberModel: NSObject {
         aCoder.encodeObject(name, forKey: "MemberName")
         aCoder.encodeObject(prayers, forKey: "Prayers")
     }
+    
+    func removePrayer(inputIndex: Int) {
+        prayers.removeAtIndex(inputIndex)
+    }
 }

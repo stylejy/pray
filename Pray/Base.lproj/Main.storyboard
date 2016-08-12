@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--My Group-->
@@ -41,6 +42,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Group" id="Qew-bB-iIV">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="aJa-RK-vcS"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bDV-mC-49I">
                             <connections>
                                 <action selector="addGroup" destination="m2A-Ps-2Qb" id="DKe-Jq-APi"/>
@@ -66,12 +68,35 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.51372549020000002" green="0.79215686269999996" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemberList" id="bnw-CL-nzB">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bnw-CL-nzB" id="gAZ-5M-Uur">
+                                    <rect key="frame" x="0.0" y="0.0" width="533" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zey-S6-c9I">
+                                            <rect key="frame" x="16" y="11" width="517" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Bzf-dJ-cdX" kind="presentation" identifier="EditMemberName" trigger="accessoryAction" id="UR5-OG-RGv"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="BEG-T8-Ftr" id="fwc-Xb-tEb"/>
                             <outlet property="delegate" destination="BEG-T8-Ftr" id="7FL-r1-ZIS"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="(Name of the selected group)" id="aBv-Z3-Xqf">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="EJB-Vu-NJe"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="J7Z-Ns-wGZ">
                             <connections>
                                 <segue destination="Bzf-dJ-cdX" kind="popoverPresentation" identifier="AddMember" popoverAnchorBarButtonItem="J7Z-Ns-wGZ" id="XJY-5f-Jz5">
@@ -80,10 +105,110 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="6Bl-my-uzy" kind="show" identifier="PrayerManagement" id="SjM-CR-3qo"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gun-Vp-nmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2111" y="1209"/>
+        </scene>
+        <!--(Name of the selected member)-->
+        <scene sceneID="0k4-Hg-WFu">
+            <objects>
+                <viewController id="6Bl-my-uzy" customClass="PrayerViewController" customModule="Pray" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="czB-JE-wpd"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cgk-Il-iMX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t97-8o-ov5">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="Input" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="95M-5R-uej">
+                                <rect key="frame" x="20" y="39" width="560" height="64"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.51372549020000002" green="0.79215686269999996" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="xFg-4k-FAd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="6Bl-my-uzy" id="bVJ-ll-f0S"/>
+                                </connections>
+                            </textView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lcb-K1-caW">
+                                <rect key="frame" x="0.0" y="124" width="600" height="412"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PrayerList" id="hI6-zt-AqS" customClass="PrayerTableViewCellController" customModule="Pray" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="63"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hI6-zt-AqS" id="dJh-xD-fX6">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prayer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoD-fM-mcP">
+                                                    <rect key="frame" x="8" y="20" width="584" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hoD-fM-mcP" firstAttribute="trailing" secondItem="dJh-xD-fX6" secondAttribute="trailingMargin" id="8tn-vn-qZp"/>
+                                                <constraint firstItem="hoD-fM-mcP" firstAttribute="centerY" secondItem="dJh-xD-fX6" secondAttribute="centerY" id="MFE-vR-618"/>
+                                                <constraint firstItem="hoD-fM-mcP" firstAttribute="leading" secondItem="dJh-xD-fX6" secondAttribute="leadingMargin" id="dLD-d9-C7N"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="prayerListLabel" destination="hoD-fM-mcP" id="4nj-r2-fz1"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 기도제목:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3KU-hw-zLJ">
+                                <rect key="frame" x="20" y="10" width="112" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="112" id="Yqa-Gc-gug"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.51372549020000002" green="0.79215686269999996" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="lcb-K1-caW" firstAttribute="top" secondItem="95M-5R-uej" secondAttribute="bottom" constant="21" id="3Da-BZ-ZFw"/>
+                            <constraint firstItem="95M-5R-uej" firstAttribute="centerX" secondItem="lcb-K1-caW" secondAttribute="centerX" id="BXS-eG-pJT"/>
+                            <constraint firstItem="lcb-K1-caW" firstAttribute="leading" secondItem="t97-8o-ov5" secondAttribute="leading" id="Ezz-u1-PGk"/>
+                            <constraint firstItem="95M-5R-uej" firstAttribute="top" secondItem="3KU-hw-zLJ" secondAttribute="bottom" constant="8" symbolic="YES" id="IRd-hH-ijg"/>
+                            <constraint firstItem="3KU-hw-zLJ" firstAttribute="top" secondItem="czB-JE-wpd" secondAttribute="bottom" constant="10" id="QD8-s6-3qe"/>
+                            <constraint firstItem="95M-5R-uej" firstAttribute="leading" secondItem="t97-8o-ov5" secondAttribute="leadingMargin" id="Y2I-IK-Nkj"/>
+                            <constraint firstItem="lcb-K1-caW" firstAttribute="bottom" secondItem="Cgk-Il-iMX" secondAttribute="top" id="vev-Y6-VVv"/>
+                            <constraint firstItem="95M-5R-uej" firstAttribute="top" secondItem="czB-JE-wpd" secondAttribute="bottom" constant="39" id="yFI-fl-DDb"/>
+                            <constraint firstItem="3KU-hw-zLJ" firstAttribute="leading" secondItem="95M-5R-uej" secondAttribute="leading" id="yXH-Xf-XGa"/>
+                            <constraint firstAttribute="trailing" secondItem="lcb-K1-caW" secondAttribute="trailing" id="zc9-c3-bjK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="(Name of the selected member)" id="K6s-dE-xYN">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="TUh-vq-5nl">
+                            <connections>
+                                <action selector="addBarButtonAction" destination="6Bl-my-uzy" id="Lu3-sj-HOB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="AddBarButton" destination="TUh-vq-5nl" id="Ztw-Rk-usV"/>
+                        <outlet property="addBarButton" destination="TUh-vq-5nl" id="paj-BW-hLR"/>
+                        <outlet property="inputTextView" destination="95M-5R-uej" id="ZqP-1p-A4n"/>
+                        <outlet property="tableView" destination="lcb-K1-caW" id="KGF-Zd-ENE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xa4-EX-RmR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2111" y="2009"/>
         </scene>
         <!--그룹 추가-->
         <scene sceneID="Sov-fN-CNf">
@@ -165,7 +290,11 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="멤버 이름을 입력 하세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xlb-Oj-idJ">
                                                     <rect key="frame" x="8" y="7" width="584" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="doneButton" destination="uIH-KQ-xhd" eventType="editingDidEndOnExit" id="FFv-E6-wHZ"/>
+                                                        <outlet property="delegate" destination="uIH-KQ-xhd" id="0Tr-Pg-MV9"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -184,7 +313,7 @@
                                 <action selector="cancelBarButton" destination="uIH-KQ-xhd" id="jY9-KU-UVf"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="Zn8-WJ-nZg">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="Zn8-WJ-nZg">
                             <connections>
                                 <action selector="doneButton" destination="uIH-KQ-xhd" id="0dr-SI-uE8"/>
                             </connections>
@@ -197,7 +326,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afn-CR-7hO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3757" y="1199"/>
+            <point key="canvasLocation" x="3762" y="1209"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="azG-Jv-KkW">
@@ -270,10 +399,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8N7-WL-i2x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2945" y="1199"/>
+            <point key="canvasLocation" x="2950" y="1209"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LrS-EX-OsL"/>
+        <segue reference="Ngu-xf-kgq"/>
+        <segue reference="UR5-OG-RGv"/>
     </inferredMetricsTieBreakers>
 </document>

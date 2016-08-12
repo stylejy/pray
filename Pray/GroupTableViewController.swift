@@ -108,15 +108,9 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         //** need to understand
         let label = cell.viewWithTag(1000) as! UILabel
         
-        let numOfGroups = groupResults!.returnNumOfGroups()
+        let groupList = groupResults!.returnGroupList()[indexPath.row]
         
-        var tableStartingNumber = 0
-        for value in groupResults.returnGroupList() {
-            if indexPath.row % numOfGroups == tableStartingNumber {
-                label.text = value.returnGroupName()
-            }
-            tableStartingNumber = tableStartingNumber + 1
-        }
+        label.text = groupList.groupName
         
         return cell
     }

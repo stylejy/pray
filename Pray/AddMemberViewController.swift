@@ -15,7 +15,7 @@ protocol AddMemberViewControllerDelegate: class {
 }
 
 class AddMemberViewController: UITableViewController, UITextFieldDelegate {
-    var groupToEdit: GroupModel?
+    var memberToEdit: MemberModel?
     
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
@@ -27,7 +27,14 @@ class AddMemberViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func doneButton() {
-        delegate?.addMemberViewController(self, didFinishAddingValue: textField.text!)
+        if memberToEdit != nil {
+            //replace the original value with the new one.
+            memberToEdit?.name = textField.text!
+            //notify the cell to update.
+            delegate?.addMemberViewController(self, didFinishEditingValue: textField.text!)
+        } else {
+            delegate?.addMemberViewController(self, didFinishAddingValue: textField.text!)
+        }
     }
     
     //Prevents the text field turning grey.
@@ -60,10 +67,11 @@ class AddMemberViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let group = groupToEdit {
+  
+      
+        if let group = memberToEdit {
             title = "멤버 이름 변경"
-            textField.text = group.returnGroupName()
+            textField.text = group.name
             doneBarButton.enabled = true
         }
     }

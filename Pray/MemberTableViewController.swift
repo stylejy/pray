@@ -30,7 +30,15 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
     }
     
     func addMemberViewController(controller: AddMemberViewController, didFinishEditingValue value: String) {
-        
+        if let index = parentGroup.returnIndex(value) {
+            //Database 상의 바뀐 이름은 바로 적용이 되나, 보여지는 셀에서는 아래와 같이 해줘야 업데이트가 된다.
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                let label = cell.viewWithTag(1000) as! UILabel
+                label.text = value
+            }
+        }
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -62,11 +70,13 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
 
     //Need to understand...
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = cellForTableView(tableView)
+        let cell = tableView.dequeueReusableCellWithIdentifier("MemberList", forIndexPath: indexPath)
         
         let memberList = parentGroup.groupMembers[indexPath.row]
         
-        cell.textLabel!.text = memberList.name
+        let label = cell.viewWithTag(1000) as! UILabel
+        
+        label.text = memberList.name
         
         return cell
     }
@@ -80,6 +90,10 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("PrayerManagement", sender: tableView.cellForRowAtIndexPath(indexPath))
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "AddMember" {
             let navigationController = segue.destinationViewController as! UINavigationController
@@ -87,7 +101,33 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
             let controller = navigationController.topViewController as! AddMemberViewController
             
             controller.delegate = self
+        } else if segue.identifier == "EditMemberName" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            
+            let controller = navigationController.topViewController as! AddMemberViewController
+            
+            controller.delegate = self
+                        
+            //Initialise memberToEdit variable in AddMemberViewController class.
+            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+                controller.memberToEdit = parentGroup.groupMembers[indexPath.row]
+            }
+        } else if segue.identifier == "PrayerManagement" {
+            let controller = segue.destinationViewController as! PrayerViewController
+            
+            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+                controller.member = parentGroup.groupMembers[indexPath.row]
+            }
         }
+    }
+    
+    //Member deleting function by swiping over a row.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        parentGroup.removeMember(indexPath.row)
+        
+        let indexPaths = [indexPath]
+        tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        
     }
 
 }
