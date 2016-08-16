@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class MemberTableViewController: UITableViewController, AddMemberViewControllerDelegate {
     
@@ -45,11 +46,6 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
         super.viewDidLoad()
         title = parentGroup.groupName
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,24 +65,32 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
     }
 
     //Need to understand...
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MemberList", forIndexPath: indexPath)
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "MmeberList")
         
-        let memberList = parentGroup.groupMembers[indexPath.row]
+        let member = parentGroup.groupMembers[indexPath.row]
         
-        let label = cell.viewWithTag(1000) as! UILabel
+        cell.textLabel?.text = member.name
         
-        label.text = memberList.name
+        if member.prayers.count > 0 {
+            let index = chooseRandomPrayerForDetailLabel(member)
+            cell.detailTextLabel?.text = member.prayers[index]
+        }
         
         return cell
     }
     
+    func chooseRandomPrayerForDetailLabel(inputMember: MemberModel) -> Int{
+        return Int(arc4random_uniform(UInt32(inputMember.prayers.count)))
+    }
+    
     func cellForTableView(tableView: UITableView) -> UITableViewCell {
-        let cellIdentifier = "MemberCell"
+        let cellIdentifier = "MemberList"
         if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
             return cell
         } else {
-            return UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+            return UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
         }
     }
     
