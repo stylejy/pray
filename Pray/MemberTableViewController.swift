@@ -35,8 +35,7 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
             //Database 상의 바뀐 이름은 바로 적용이 되나, 보여지는 셀에서는 아래와 같이 해줘야 업데이트가 된다.
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
             if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-                let label = cell.viewWithTag(1000) as! UILabel
-                label.text = value
+                cell.textLabel?.text = value
             }
         }
         dismissViewControllerAnimated(true, completion: nil)
@@ -67,18 +66,19 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
     //Need to understand...
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "MmeberList")
+        let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("MemberList")! as UITableViewCell
         
         let member = parentGroup.groupMembers[indexPath.row]
         
-        cell.textLabel?.text = member.name
+        cell!.textLabel?.text = member.name
         
         if member.prayers.count > 0 {
             let index = chooseRandomPrayerForDetailLabel(member)
-            cell.detailTextLabel?.text = member.prayers[index]
+            //Subtitle setting is done in the storyboard.
+            cell!.detailTextLabel?.text = member.prayers[index]
         }
         
-        return cell
+        return cell!
     }
     
     func chooseRandomPrayerForDetailLabel(inputMember: MemberModel) -> Int{
