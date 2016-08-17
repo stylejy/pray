@@ -22,6 +22,7 @@ class MemberModel: NSObject {
         super.init()
     }
     
+    //For saving the details as a external file.
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(name, forKey: "MemberName")
         aCoder.encodeObject(prayers, forKey: "Prayers")

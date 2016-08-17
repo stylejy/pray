@@ -10,39 +10,29 @@ import Foundation
 import UIKit
 
 class GroupManagement {
+    //Assign GroupModel type array to groupList variable.
     var groupList = [GroupModel]()
     
     init() {
+        //When this class is called, the group list the last time user saved is fetched.
         loadGroupList()
     }
    
     func addGroup(inputGroupName: String) {
         let newGroup = GroupModel()
-        newGroup.giveGroupName(inputGroupName)
+        newGroup.groupName = inputGroupName
         groupList.append(newGroup)
     }
     
-    func returnGroupList() -> [GroupModel] {
-        return groupList
+    func removeGroup(inputIndexPath: Int) {
+        groupList.removeAtIndex(inputIndexPath)
     }
-    
-    func returnNumOfGroups() -> Int {
-        return groupList.count
-    }
-    
-    func returnNumOfMembers(inputIndex: Int) -> Int {
-        return groupList[inputIndex].returnNumOfMembers()
-    }
-    
-    /*func returnMembers(inputIndex: Int) -> [String: String] {
-        return groupList[inputIndex].returnGroupMembers()
-    }*/
     
     //START - For editing group name
     func returnIndex(inputGroupName: String) -> Int! {
         var count = 0
         for value in groupList {
-            if value.returnGroupName() == inputGroupName {
+            if value.groupName == inputGroupName {
                 return count
             } else {
                 count = count + 1
@@ -51,25 +41,6 @@ class GroupManagement {
         return nil
     }
     //END
-    
-    /*
-    func addMember(inputMemberName: String, inputGroupNum: Int) {
-        let selectedGroup = groupList[inputGroupNum]
-        selectedGroup.giveGroupMemberName(inputMemberName)
-    }
-    
-    
-    func addPray(inputPray: String, inputMemberName: String, inputGroupNum: Int) {
-        let selectedGroup = groupList[inputGroupNum]
-        selectedGroup.giveGroupMemberPray(inputMemberName, inputPray: inputPray)
-    }
- 
-    */
-    
-    func removeGroup(inputIndexPath: Int) {
-        groupList.removeAtIndex(inputIndexPath)
-    }
-    
     
     //START - For saving and loading data
     func documentsDirectory() -> String {
@@ -87,8 +58,6 @@ class GroupManagement {
         archiver.encodeObject(groupList, forKey: "GroupList")
         archiver.finishEncoding()
         data.writeToFile(dataFilePath(), atomically: true)
-        
-        //print("save")
     }
     
     func loadGroupList() {
@@ -101,9 +70,6 @@ class GroupManagement {
                 unarchiver.finishDecoding()
             }
         }
-        
-        //print("load")
     }
-    //END
-    
+    //End
 }

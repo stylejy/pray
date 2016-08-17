@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class MemberTableViewController: UITableViewController, AddMemberViewControllerDelegate {
+class MemberTableViewController: UITableViewController, AddMemberViewControllerDelegate, PrayerViewControllerDelegate {
     
     var parentGroup: GroupModel!
     
@@ -19,7 +19,7 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
     
     func addMemberViewController(controller: AddMemberViewController, didFinishAddingValue value: String) {
         
-        let newRowIndex = parentGroup.returnNumOfMembers()
+        let newRowIndex = parentGroup.groupMembers.count
         
         let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
         parentGroup.giveGroupMemberName(indexPath.row, inputName: value)
@@ -39,6 +39,11 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
             }
         }
         dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    //Used to update member view cells every time new prayer is added for the subtitles appearing properly.
+    func prayerViewController(controller: PrayerViewController) {
+        self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -122,6 +127,8 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
             if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
                 controller.member = parentGroup.groupMembers[indexPath.row]
             }
+            
+            controller.delegate = self
         }
     }
     

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol PrayerViewControllerDelegate: class {
+    func prayerViewController(controller: PrayerViewController)
+}
+
 class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
     var member: MemberModel!
     
@@ -15,13 +19,15 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
     @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var tableView: UITableView!
     
+    weak var delegate: PrayerViewControllerDelegate?
+    
     @IBAction func addBarButtonAction() {
         member.prayers.append(inputTextView.text)
         inputTextView.text = ""
         inputTextView.resignFirstResponder()
         addBarButton.enabled = false
         self.tableView.reloadData()
-        print(member.prayers)
+        delegate?.prayerViewController(self)
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -25,7 +25,7 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
     func addGroupViewController(controller: AddGroupViewController, didFinishAddingValue value: String) {
         
         //newRowIndex must be placed before the adding function to return the proper number for the new row index.
-        let newRowIndex = groupResults.returnNumOfGroups()
+        let newRowIndex = groupResults.groupList.count
         groupResults.addGroup(value)
         
         //For testing.
@@ -76,13 +76,13 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
             controller.delegate = self
             
             if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
-                controller.groupToEdit = groupResults!.returnGroupList()[indexPath.row]
+                controller.groupToEdit = groupResults!.groupList[indexPath.row]
             }
         } else if segue.identifier == "ShowMemberList" {
             let controller = segue.destinationViewController as! MemberTableViewController
             
             if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
-                controller.parentGroup = groupResults!.returnGroupList()[indexPath.row]
+                controller.parentGroup = groupResults!.groupList[indexPath.row]
             }
         }
     }
@@ -99,7 +99,7 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
 
     //Returns the number of the groups added.
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupResults.returnNumOfGroups()
+        return groupResults.groupList.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -108,7 +108,7 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         //** need to understand
         let label = cell.viewWithTag(1000) as! UILabel
         
-        let groupList = groupResults!.returnGroupList()[indexPath.row]
+        let groupList = groupResults!.groupList[indexPath.row]
         
         label.text = groupList.groupName
         

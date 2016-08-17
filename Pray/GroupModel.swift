@@ -22,18 +22,6 @@ class GroupModel: NSObject {
         super.init()
     }
     
-    func returnGroupName() -> String {
-        return groupName
-    }
-    
-    func returnGroupMembers() -> [MemberModel] {
-        return groupMembers
-    }
-    
-    func returnNumOfMembers() -> Int {
-        return groupMembers.count
-    }
-    
     func returnIndex(inputGroupName: String) -> Int! {
         var count = 0
         for value in groupMembers {
@@ -44,10 +32,6 @@ class GroupModel: NSObject {
             }
         }
         return nil
-    }
-    
-    func giveGroupName(inputName: String) {
-        groupName = inputName
     }
     
     func giveGroupMemberName(inputIndex: Int, inputName: String) {

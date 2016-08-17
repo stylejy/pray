@@ -31,7 +31,7 @@ class AddGroupViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func doneButton() {
         if let group = groupToEdit {
-            group.giveGroupName(textField.text!)
+            group.groupName = textField.text!
             delegate?.addGroupViewController(self, didFinishEditingValue: textField.text!)
         } else {
             delegate?.addGroupViewController(self, didFinishAddingValue: textField.text!)
@@ -71,7 +71,7 @@ class AddGroupViewController: UITableViewController, UITextFieldDelegate {
         
         if let group = groupToEdit {
             title = "그룹 이름 변경"
-            textField.text = group.returnGroupName()
+            textField.text = group.groupName
             doneBarButton.enabled = true
         }
     }
