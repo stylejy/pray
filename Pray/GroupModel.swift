@@ -41,7 +41,9 @@ class GroupModel: NSObject {
     }
     
     func giveGroupMemberPray(inputIndex: Int, inputPrayer: String) {
-        groupMembers[inputIndex].prayers.append(inputPrayer)
+        let newPrayer = PrayerModel()
+        newPrayer.prayer = inputPrayer
+        groupMembers[inputIndex].prayers.append(newPrayer)
     }
     
     func removeMember(inputIndex: Int) {

@@ -16,12 +16,27 @@ class GroupManagement {
     init() {
         //When this class is called, the group list the last time user saved is fetched.
         loadGroupList()
+        setUpMyPrayerGroup()
     }
    
-    func addGroup(inputGroupName: String) {
+    func setUpMyPrayerGroup() {
+        let name = "\u{1F64F} 나의 기도제목"
+        if groupList.count == 0 || groupList[0].groupName != name {
+            groupList.insert(createNewGroupModel(name), atIndex: 0)
+            let meMemberModel = MemberModel()
+            //There is only one member in my prayer group.
+            groupList[0].groupMembers.append(meMemberModel)
+        }
+    }
+    
+    func createNewGroupModel(inputName: String) -> GroupModel {
         let newGroup = GroupModel()
-        newGroup.groupName = inputGroupName
-        groupList.append(newGroup)
+        newGroup.groupName = inputName
+        return newGroup
+    }
+    
+    func addGroup(inputGroupName: String) {
+        groupList.append(createNewGroupModel(inputGroupName))
     }
     
     func removeGroup(inputIndexPath: Int) {

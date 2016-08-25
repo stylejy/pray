@@ -1,37 +1,40 @@
 //
-//  PrayerTableViewController.swift
+//  MyPrayerViewController.swift
 //  Pray
 //
-//  Created by 이주영 on 11/08/2016.
+//  Created by 이주영 on 22/08/2016.
 //  Copyright © 2016 이주영. All rights reserved.
 //
 
 import UIKit
 
-protocol PrayerViewControllerDelegate: class {
-    func prayerViewController(controller: PrayerViewController)
+protocol MyPrayerViewControllerDelegate: class {
+    func myPrayerViewController(controller: MyPrayerViewController)
 }
 
-class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
-    var member: MemberModel!
+class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
+    var me: MemberModel!
     
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControllerForAdding: UISegmentedControl!
     @IBOutlet weak var cancelBarButton: UIBarButtonItem!
-    
-    weak var delegate: PrayerViewControllerDelegate?
+ 
     
     @IBAction func addBarButtonAction() {
         let newPrayer = PrayerModel()
         newPrayer.prayer = inputTextView.text
-        member.prayers.append(newPrayer)
+        if segmentedControllerForAdding.selectedSegmentIndex == 0 {
+            newPrayer.isOpen = true
+        }
+        me.prayers.append(newPrayer)
         inputTextView.text = ""
         inputTextView.resignFirstResponder()
         addBarButton.enabled = false
         self.tableView.reloadData()
         leftBarItemController(false)
-        //delegate?.prayerViewController(self)
+        //delegate?.myPrayerViewController(self)
     }
     
     //It clears the text view and hide the keyboard
@@ -41,19 +44,13 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
         leftBarItemController(false)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        //inputTextView.becomeFirstResponder()
-    }
-    
     //Used to display the cancel bar button and hide the back button when the text view is tapped and the keyboard appears.
     func textViewDidBeginEditing(textView: UITextView) {
         leftBarItemController(true)
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        
-        if textView.restorationIdentifier! == "Input" {
+        if textView.restorationIdentifier! == "InputForMe" {
             let oldText: NSString = inputTextView.text!
             let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: text)
             addBarButton.enabled = (newText.length > 0)
@@ -70,25 +67,38 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return member.prayers.count
+        return me.prayers.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //as! PrayerTableViewCellController is used to have access to the controller's outlets
-        let cell = tableView.dequeueReusableCellWithIdentifier("PrayerList", forIndexPath: indexPath) as! PrayerTableViewCellController
-        let prayerList = member.prayers[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("MyPrayerList", forIndexPath: indexPath) as! MyPrayerTableViewCellController
+        let prayerList = me.prayers[indexPath.row]
         
-        cell.prayerListLabel.numberOfLines = 0
-        cell.prayerListLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-      
-        cell.prayerListLabel.text = prayerList.prayer
+        cell.myPrayerListLabel.numberOfLines = 0
+        cell.myPrayerListLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        
+        cell.myPrayerListLabel.text = prayerList.prayer
+        
+        if prayerList.isOpen == true {
+            
+        }
         
         return cell
     }
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        leftBarItemController(false)
+    }
+    
     //Prayer deleting function by swiping over a row.
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        member.removePrayer(indexPath.row)
+        me.removePrayer(indexPath.row)
         
         let indexPaths = [indexPath]
         tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
@@ -106,13 +116,10 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
             cancelBarButton.title = "Cancel"
         }
     }
-   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = member.name
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        leftBarItemController(false)
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //inputTextView.becomeFirstResponder()
     }
+    
 }

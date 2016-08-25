@@ -10,7 +10,7 @@ import Foundation
 
 class MemberModel: NSObject {
     var name: String = ""
-    var prayers: [String] = []
+    var prayers = [PrayerModel]()
     
     override init() {
         super.init()
@@ -18,7 +18,18 @@ class MemberModel: NSObject {
     
     required init?(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObjectForKey("MemberName") as! String
-        prayers = aDecoder.decodeObjectForKey("Prayers") as! [String]
+        
+        //First if statement is used to convert old data type(String) to new data type(PrayerModel) for old version users only.
+        if (aDecoder.decodeObjectForKey("Prayers") as? [String]) != nil {
+            for stringPrayer in aDecoder.decodeObjectForKey("Prayers") as! [String] {
+                let newPrayerModel = PrayerModel()
+                newPrayerModel.prayer = stringPrayer
+                prayers.append(newPrayerModel)
+            }
+        } else {
+            prayers = aDecoder.decodeObjectForKey("Prayers") as! [PrayerModel]
+        }
+        
         super.init()
     }
     

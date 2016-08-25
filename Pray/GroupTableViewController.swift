@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
 //  Pray
-//  Created by 이주영, 윤지훈 on 08/07/2016.
-//  Copyright © 2016 이주영, 윤지훈. All rights reserved.
+//  Created by 이주영 on 08/07/2016.
+//  Copyright © 2016 이주영. All rights reserved.
 //
 
 import UIKit
@@ -56,9 +56,13 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         
     }
     
-    //This method is used to go to the member list screen.
+    //This method is used to go to the member list scene or the my prayer list scene by which cell is selected.
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("ShowMemberList", sender: tableView.cellForRowAtIndexPath(indexPath))
+        if indexPath.row == 0 {
+            performSegueWithIdentifier("MyPrayerManagement", sender: nil)
+        } else {
+            performSegueWithIdentifier("ShowMemberList", sender: tableView.cellForRowAtIndexPath(indexPath))
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -84,6 +88,10 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
             if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
                 controller.parentGroup = groupResults!.groupList[indexPath.row]
             }
+        } else if segue.identifier == "MyPrayerManagement" {
+            let controller = segue.destinationViewController as! MyPrayerViewController
+            
+            controller.me = groupResults.groupList[0].groupMembers[0]
         }
     }
     
@@ -115,13 +123,22 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         return cell
     }
     
+    //Prevents users from deleting 나의 기도제목 group.
+    //Delete function doesn't appear on 나의 기도제목 cell.
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        if indexPath.row != 0 {
+            return UITableViewCellEditingStyle.Delete
+        } else {
+            return UITableViewCellEditingStyle.None
+        }
+    }
+    
     //Group deleting function by swiping over a row.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         groupResults.removeGroup(indexPath.row)
         
         let indexPaths = [indexPath]
         tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
-        
     }
     
    

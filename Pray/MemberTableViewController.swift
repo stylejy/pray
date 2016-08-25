@@ -80,7 +80,8 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
         if member.prayers.count > 0 {
             let index = chooseRandomPrayerForDetailLabel(member)
             //Subtitle setting is done in the storyboard.
-            cell!.detailTextLabel?.text = member.prayers[index]
+            let memberPrayer = member.prayers[index]
+            cell!.detailTextLabel?.text = memberPrayer.prayer
         }
         
         return cell!
