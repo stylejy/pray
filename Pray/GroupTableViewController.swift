@@ -92,6 +92,8 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
             let controller = segue.destinationViewController as! MyPrayerViewController
             
             controller.me = groupResults.groupList[0].groupMembers[0]
+            
+
         }
     }
     
@@ -111,7 +113,7 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GroupList", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("GroupList", forIndexPath: indexPath) as UITableViewCell
         
         //** need to understand
         let label = cell.viewWithTag(1000) as! UILabel

@@ -17,7 +17,7 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
     
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     @IBOutlet weak var inputTextView: UITextView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: LPRTableView!
     @IBOutlet weak var segmentedControllerForAdding: UISegmentedControl!
     @IBOutlet weak var cancelBarButton: UIBarButtonItem!
  
@@ -80,11 +80,19 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
         
         cell.myPrayerListLabel.text = prayerList.prayer
         
+        
         if prayerList.isOpen == true {
             
         }
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        let source = me.prayers[sourceIndexPath.row]
+        let destination = me.prayers[destinationIndexPath.row]
+        me.prayers[sourceIndexPath.row] = destination
+        me.prayers[destinationIndexPath.row] = source
     }
     
     
