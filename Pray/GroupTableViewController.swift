@@ -7,13 +7,21 @@
 
 import UIKit
 
-class GroupTableViewController: UITableViewController, AddGroupViewControllerDelegate {
-  
+class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDelegate {
     var groupResults: GroupManagement!
+    
+    @IBOutlet var tableViewFromStoryboard: LPRTableView!
+    
     required init?(coder aDecoder: NSCoder) {
         //for testing
         //print("Group Management says \(returnNumOfGroups())")
         super.init(coder: aDecoder)
+        //***Important!!!*** It is used to link tableView in the storyboard to the tableView variable in LPRTableViewController.
+        super.tableView = tableViewFromStoryboard
+    }
+    
+    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return (indexPath.row != 0)
     }
 
     func addGroupViewControllerDidCancel(controller: AddGroupViewController) {
@@ -124,6 +132,15 @@ class GroupTableViewController: UITableViewController, AddGroupViewControllerDel
         
         return cell
     }
+    
+    //Used to move data from a source index to a destination index when moveing a cell.
+    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        let source = groupResults.groupList[sourceIndexPath.row]
+        let destination = groupResults.groupList[destinationIndexPath.row]
+        groupResults.groupList[sourceIndexPath.row] = destination
+        groupResults.groupList[destinationIndexPath.row] = source
+    }
+    
     
     //Prevents users from deleting 나의 기도제목 group.
     //Delete function doesn't appear on 나의 기도제목 cell.

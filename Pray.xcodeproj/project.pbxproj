@@ -119,10 +119,10 @@
 		C16CC7C81D59DDE80061AB7A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C1F896D11D72568A00CC44C1 /* Group Table View Controller and sub class */,
 				C1AF9B041D6B256200EB6910 /* My Prayer View Controller and sub class */,
 				C125B81E1D64CF7E001CE43D /* Prayer View Controller and sub class */,
 				C1396D141D5535F00048F1FA /* MemberTableViewController.swift */,
+				C12764671D30242E006B219F /* GroupTableViewController.swift */,
 				C1F896CA1D6F638700CC44C1 /* SupporterClass.swift */,
 			);
 			name = "View Controllers";
@@ -152,14 +152,6 @@
 				C1F896CF1D71EC3400CC44C1 /* LPRTableView.swift */,
 			);
 			name = "External APIs";
-			sourceTree = "<group>";
-		};
-		C1F896D11D72568A00CC44C1 /* Group Table View Controller and sub class */ = {
-			isa = PBXGroup;
-			children = (
-				C12764671D30242E006B219F /* GroupTableViewController.swift */,
-			);
-			name = "Group Table View Controller and sub class";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

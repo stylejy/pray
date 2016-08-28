@@ -12,6 +12,7 @@ import Foundation
 class MemberTableViewController: UITableViewController, AddMemberViewControllerDelegate, PrayerViewControllerDelegate {
     
     var parentGroup: GroupModel!
+    @IBOutlet var tableViewFromStoryboard: LPRTableView!
     
     func addMemberViewControllerDidCancel(controller: AddMemberViewController) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -48,6 +49,8 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //***Important!!!*** It is used to link tableView in the storyboard to the tableView variable in LPRTableViewController.
+        super.tableView = tableViewFromStoryboard
         title = parentGroup.groupName
         
     }
@@ -85,6 +88,14 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
         }
         
         return cell!
+    }
+    
+    //Used to move data from a source index to a destination index when moveing a cell.
+    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        let source = parentGroup.groupMembers[sourceIndexPath.row]
+        let destination = parentGroup.groupMembers[destinationIndexPath.row]
+        parentGroup.groupMembers[sourceIndexPath.row] = destination
+        parentGroup.groupMembers[destinationIndexPath.row] = source
     }
     
     func chooseRandomPrayerForDetailLabel(inputMember: MemberModel) -> Int{

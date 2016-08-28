@@ -17,7 +17,7 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
     
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     @IBOutlet weak var inputTextView: UITextView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: LPRTableView!
     @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     
     weak var delegate: PrayerViewControllerDelegate?
@@ -84,6 +84,14 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
         cell.prayerListLabel.text = prayerList.prayer
         
         return cell
+    }
+    
+    //Used to move data from a source index to a destination index when moveing a cell.
+    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        let source = member.prayers[sourceIndexPath.row]
+        let destination = member.prayers[destinationIndexPath.row]
+        member.prayers[sourceIndexPath.row] = destination
+        member.prayers[destinationIndexPath.row] = source
     }
     
     //Prayer deleting function by swiping over a row.

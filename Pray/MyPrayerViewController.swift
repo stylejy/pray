@@ -88,6 +88,7 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
         return cell
     }
     
+    //Used to move data from a source index to a destination index when moveing a cell.
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         let source = me.prayers[sourceIndexPath.row]
         let destination = me.prayers[destinationIndexPath.row]

@@ -16,7 +16,7 @@
         <scene sceneID="MB2-3Y-BVD">
             <objects>
                 <tableViewController id="m2A-Ps-2Qb" customClass="GroupTableViewController" customModule="Pray" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Npw-sA-thb">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Npw-sA-thb" customClass="LPRTableView" customModule="Pray" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -59,6 +59,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="Npw-sA-thb" id="TKp-6C-4sA"/>
+                        <outlet property="tableViewFromStoryboard" destination="Npw-sA-thb" id="ZuY-1k-GfT"/>
                         <segue destination="BEG-T8-Ftr" kind="show" identifier="ShowMemberList" id="wfs-kM-4fl"/>
                         <segue destination="dul-K3-Tni" kind="show" identifier="MyPrayerManagement" id="yr0-YN-wiP"/>
                     </connections>
@@ -71,7 +73,7 @@
         <scene sceneID="2H2-J0-L2B">
             <objects>
                 <tableViewController id="BEG-T8-Ftr" customClass="MemberTableViewController" customModule="Pray" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zMJ-Wk-4ZY">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zMJ-Wk-4ZY" customClass="LPRTableView" customModule="Pray" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,6 +123,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableViewFromStoryboard" destination="zMJ-Wk-4ZY" id="wZW-oE-2eu"/>
                         <segue destination="6Bl-my-uzy" kind="show" identifier="PrayerManagement" id="SjM-CR-3qo"/>
                     </connections>
                 </tableViewController>
@@ -153,7 +156,7 @@
                                     <outlet property="delegate" destination="6Bl-my-uzy" id="bVJ-ll-f0S"/>
                                 </connections>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lcb-K1-caW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lcb-K1-caW" customClass="LPRTableView" customModule="Pray" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="124" width="600" height="412"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.51372549020000002" green="0.79215686269999996" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -450,7 +453,7 @@
                                     <outlet property="delegate" destination="dul-K3-Tni" id="V2c-w4-s4h"/>
                                 </connections>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="re4-EW-aCc" customClass="LPRTableView" customModule="Pray" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="re4-EW-aCc" customClass="LPRTableView" customModule="Pray" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="165" width="600" height="371"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.51372549020000002" green="0.79215686269999996" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
