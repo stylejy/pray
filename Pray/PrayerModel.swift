@@ -11,6 +11,7 @@ import Foundation
 class PrayerModel: NSObject {
     var prayer: String = ""
     var isOpen: Bool = false
+    var date: NSDate!
     
     override init() {
         super.init()
@@ -19,6 +20,12 @@ class PrayerModel: NSObject {
     required init?(coder aDecoder: NSCoder) {
         prayer = aDecoder.decodeObjectForKey("Prayer") as! String
         isOpen = aDecoder.decodeObjectForKey("IsOpen") as! Bool
+        
+        if aDecoder.decodeObjectForKey("Date") != nil {
+            date = aDecoder.decodeObjectForKey("Date") as! NSDate
+        } else {
+            date = NSDate()
+        }
         super.init()
     }
     
@@ -26,5 +33,6 @@ class PrayerModel: NSObject {
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(prayer, forKey: "Prayer")
         aCoder.encodeObject(isOpen, forKey: "IsOpen")
+        aCoder.encodeObject(date, forKey: "Date")
     }
 }

@@ -80,6 +80,12 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
         
         cell.myPrayerListLabel.text = prayerList.prayer
         
+        //START - To form date in String type
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "dd.MMM.yyyy"
+        let dateString = formatter.stringFromDate(prayerList.date)
+        cell.prayerDetails.text = dateString
+        //End
         
         if prayerList.isOpen == true {
             
@@ -102,6 +108,8 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 65
         leftBarItemController(false)
     }
     

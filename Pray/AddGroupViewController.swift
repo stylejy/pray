@@ -70,7 +70,7 @@ class AddGroupViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         if let group = groupToEdit {
-            title = "그룹 이름 변경"
+            title = "그룹 정보"
             textField.text = group.groupName
             doneBarButton.enabled = true
         }

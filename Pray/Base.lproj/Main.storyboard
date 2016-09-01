@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W9Q-j2-O3T" id="Jg7-fY-YhV">
-                                    <rect key="frame" x="0.0" y="0.0" width="533" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="533" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="918-Ek-kYU">
@@ -156,34 +156,48 @@
                                     <outlet property="delegate" destination="6Bl-my-uzy" id="bVJ-ll-f0S"/>
                                 </connections>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lcb-K1-caW" customClass="LPRTableView" customModule="Pray" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="20" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lcb-K1-caW" customClass="LPRTableView" customModule="Pray" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="124" width="600" height="412"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.51372549020000002" green="0.79215686269999996" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PrayerList" id="hI6-zt-AqS" customClass="PrayerTableViewCellController" customModule="Pray" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="63"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PrayerList" rowHeight="65" id="hI6-zt-AqS" customClass="PrayerTableViewCellController" customModule="Pray" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hI6-zt-AqS" id="dJh-xD-fX6">
-                                            <rect key="frame" x="0.0" y="0.0" width="533" height="62.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="533" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prayer" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoD-fM-mcP">
-                                                    <rect key="frame" x="16" y="20" width="517" height="21"/>
+                                                    <rect key="frame" x="16" y="8" width="517" height="22"/>
                                                     <color key="tintColor" red="0.51372549020000002" green="0.79215686269999996" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last updated date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yC-k4-NmI">
+                                                    <rect key="frame" x="16" y="36" width="517" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="3YL-3Z-lxU"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hoD-fM-mcP" firstAttribute="leading" secondItem="dJh-xD-fX6" secondAttribute="leadingMargin" constant="8" id="AcM-lH-oao"/>
-                                                <constraint firstAttribute="trailing" secondItem="hoD-fM-mcP" secondAttribute="trailing" id="eol-Iu-bJ7"/>
-                                                <constraint firstItem="hoD-fM-mcP" firstAttribute="centerY" secondItem="dJh-xD-fX6" secondAttribute="centerY" id="jIl-6Z-WRL"/>
+                                                <constraint firstItem="7yC-k4-NmI" firstAttribute="top" secondItem="hoD-fM-mcP" secondAttribute="bottom" constant="6" id="5K1-4c-raS"/>
+                                                <constraint firstAttribute="trailing" secondItem="hoD-fM-mcP" secondAttribute="trailing" id="AWe-wA-6MY"/>
+                                                <constraint firstItem="hoD-fM-mcP" firstAttribute="trailing" secondItem="7yC-k4-NmI" secondAttribute="trailing" id="Vh3-bQ-Tij"/>
+                                                <constraint firstItem="hoD-fM-mcP" firstAttribute="leading" secondItem="dJh-xD-fX6" secondAttribute="leadingMargin" constant="8" id="ZLp-jZ-L29"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="7yC-k4-NmI" secondAttribute="bottom" id="kNy-7k-eqn"/>
+                                                <constraint firstItem="hoD-fM-mcP" firstAttribute="leading" secondItem="7yC-k4-NmI" secondAttribute="leading" id="pur-SS-nda"/>
+                                                <constraint firstItem="hoD-fM-mcP" firstAttribute="top" secondItem="dJh-xD-fX6" secondAttribute="topMargin" id="sx3-P5-0nf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="tintColor" red="0.51372549020000002" green="0.79215686269999996" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
+                                            <outlet property="prayerDetails" destination="7yC-k4-NmI" id="QYW-4B-vA1"/>
                                             <outlet property="prayerListLabel" destination="hoD-fM-mcP" id="4nj-r2-fz1"/>
                                         </connections>
                                     </tableViewCell>
@@ -244,15 +258,15 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="GJV-mO-fPF">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection id="wCP-hK-ZnB">
+                            <tableViewSection headerTitle="그룹 이름은 수정 가능합니다." id="wCP-hK-ZnB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="j33-ym-ggJ">
-                                        <rect key="frame" x="0.0" y="35" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j33-ym-ggJ" id="gp2-Ab-4Hs">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="그룹 이름을 입력 하세요." textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uUz-JB-WSO">
@@ -264,6 +278,56 @@
                                                         <outlet property="delegate" destination="pHX-Gn-sf4" id="57f-iX-f9n"/>
                                                     </connections>
                                                 </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="jXt-bW-j9s">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qlB-QM-ohI">
+                                        <rect key="frame" x="0.0" y="130" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qlB-QM-ohI" id="9Nq-Je-fXm">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="glS-D6-gxM">
+                                                    <rect key="frame" x="8" y="8" width="584" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="doneButton" destination="pHX-Gn-sf4" eventType="editingDidEndOnExit" id="7Tx-bX-mlG"/>
+                                                        <outlet property="delegate" destination="pHX-Gn-sf4" id="5oY-VU-rAQ"/>
+                                                    </connections>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BG5-QU-maR">
+                                                    <rect key="frame" x="0.0" y="8" width="600" height="30"/>
+                                                    <state key="normal" title="Export all prayers in this group"/>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="47" id="bZY-vf-Y16">
+                                        <rect key="frame" x="0.0" y="174" width="600" height="47"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bZY-vf-Y16" id="hd9-Dd-DaM">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="47"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dzm-XY-ROA">
+                                                    <rect key="frame" x="8" y="8" width="584" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="doneButton" destination="pHX-Gn-sf4" eventType="editingDidEndOnExit" id="LFG-Pd-q17"/>
+                                                        <outlet property="delegate" destination="pHX-Gn-sf4" id="zIW-ik-LqX"/>
+                                                    </connections>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ge-cT-Lq5">
+                                                    <rect key="frame" x="0.0" y="8" width="600" height="30"/>
+                                                    <state key="normal" title="Export all prayers which are added today in this group"/>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -281,7 +345,7 @@
                                 <action selector="cancelButton" destination="pHX-Gn-sf4" id="cY4-Q3-Wfo"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="QjH-O1-Jhb">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="QjH-O1-Jhb">
                             <connections>
                                 <action selector="doneButton" destination="pHX-Gn-sf4" id="h1E-LQ-Z7O"/>
                             </connections>
@@ -311,7 +375,7 @@
                                         <rect key="frame" x="0.0" y="99" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V2N-lZ-odg" id="lUu-p6-WaG">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="멤버 이름을 입력 하세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xlb-Oj-idJ">
@@ -453,34 +517,48 @@
                                     <outlet property="delegate" destination="dul-K3-Tni" id="V2c-w4-s4h"/>
                                 </connections>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="re4-EW-aCc" customClass="LPRTableView" customModule="Pray" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="20" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="re4-EW-aCc" customClass="LPRTableView" customModule="Pray" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="165" width="600" height="371"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.51372549020000002" green="0.79215686269999996" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyPrayerList" id="qfv-b7-Z4I" customClass="MyPrayerTableViewCellController" customModule="Pray" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="63"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyPrayerList" rowHeight="65" id="qfv-b7-Z4I" customClass="MyPrayerTableViewCellController" customModule="Pray" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qfv-b7-Z4I" id="1n4-YM-XaF">
-                                            <rect key="frame" x="0.0" y="0.0" width="533" height="62.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="533" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last updated date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHj-tH-Pqk">
+                                                    <rect key="frame" x="16" y="37" width="517" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="R0T-3b-vcL"/>
+                                                        <constraint firstAttribute="width" constant="517" id="fsq-SC-9sT"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prayer" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsa-U2-92H">
-                                                    <rect key="frame" x="16" y="21" width="517" height="21"/>
+                                                    <rect key="frame" x="16" y="8" width="517" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Hsa-U2-92H" secondAttribute="trailing" id="AUN-Zy-lyO"/>
-                                                <constraint firstItem="Hsa-U2-92H" firstAttribute="centerY" secondItem="1n4-YM-XaF" secondAttribute="centerY" id="Xun-Wv-883"/>
-                                                <constraint firstItem="Hsa-U2-92H" firstAttribute="leading" secondItem="1n4-YM-XaF" secondAttribute="leadingMargin" constant="8" id="fMX-vr-1jW"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="xHj-tH-Pqk" secondAttribute="bottom" constant="-2" id="4FN-hL-Cti"/>
+                                                <constraint firstItem="Hsa-U2-92H" firstAttribute="leading" secondItem="xHj-tH-Pqk" secondAttribute="leading" id="61N-8D-pkU"/>
+                                                <constraint firstItem="Hsa-U2-92H" firstAttribute="top" secondItem="1n4-YM-XaF" secondAttribute="topMargin" id="Vy9-WY-m3e"/>
+                                                <constraint firstItem="xHj-tH-Pqk" firstAttribute="leading" secondItem="1n4-YM-XaF" secondAttribute="leadingMargin" constant="8" id="hWr-DG-Zgy"/>
+                                                <constraint firstAttribute="trailing" secondItem="Hsa-U2-92H" secondAttribute="trailing" id="tpc-Uq-1a1"/>
+                                                <constraint firstItem="xHj-tH-Pqk" firstAttribute="top" secondItem="Hsa-U2-92H" secondAttribute="bottom" constant="6" id="zpY-7E-95h"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="tintColor" red="0.51372549020000002" green="0.79215686269999996" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="myPrayerListLabel" destination="Hsa-U2-92H" id="QHL-TC-2oG"/>
+                                            <outlet property="prayerDetails" destination="xHj-tH-Pqk" id="7CR-oW-yME"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

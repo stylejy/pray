@@ -11,6 +11,5 @@ import UIKit
 //This class is used to use outlets for repeated items under UIViewController.
 class PrayerTableViewCellController: UITableViewCell {
     @IBOutlet weak var prayerListLabel: UILabel!
-    
-    
+    @IBOutlet weak var prayerDetails: UILabel!
 }

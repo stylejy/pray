@@ -10,4 +10,5 @@ import UIKit
 
 class MyPrayerTableViewCellController: UITableViewCell {
     @IBOutlet weak var myPrayerListLabel: UILabel!
+    @IBOutlet weak var prayerDetails: UILabel!
 }

@@ -25,13 +25,15 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
     @IBAction func addBarButtonAction() {
         let newPrayer = PrayerModel()
         newPrayer.prayer = inputTextView.text
+        newPrayer.date = NSDate()
         member.prayers.append(newPrayer)
         inputTextView.text = ""
         inputTextView.resignFirstResponder()
         addBarButton.enabled = false
         self.tableView.reloadData()
         leftBarItemController(false)
-        //delegate?.prayerViewController(self)
+        //Used to update member view cells every time new prayer is added for the subtitles appearing properly.
+        delegate?.prayerViewController(self)
     }
     
     //It clears the text view and hide the keyboard
@@ -83,6 +85,13 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
       
         cell.prayerListLabel.text = prayerList.prayer
         
+        //START - To form date in String type
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "dd.MMM.yyyy"
+        let dateString = formatter.stringFromDate(prayerList.date)
+        cell.prayerDetails.text = dateString
+        //End
+        
         return cell
     }
     
@@ -121,6 +130,8 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 65
         leftBarItemController(false)
     }
 }

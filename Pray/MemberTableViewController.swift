@@ -52,7 +52,11 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
         //***Important!!!*** It is used to link tableView in the storyboard to the tableView variable in LPRTableViewController.
         super.tableView = tableViewFromStoryboard
         title = parentGroup.groupName
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //inputTextView.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,6 +89,8 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
             //Subtitle setting is done in the storyboard.
             let memberPrayer = member.prayers[index]
             cell!.detailTextLabel?.text = memberPrayer.prayer
+        } else {
+            cell!.detailTextLabel?.text = "기도 제목을 입력해 주세요"
         }
         
         return cell!
@@ -96,6 +102,7 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
         let destination = parentGroup.groupMembers[destinationIndexPath.row]
         parentGroup.groupMembers[sourceIndexPath.row] = destination
         parentGroup.groupMembers[destinationIndexPath.row] = source
+        self.tableView.reloadData()
     }
     
     func chooseRandomPrayerForDetailLabel(inputMember: MemberModel) -> Int{
