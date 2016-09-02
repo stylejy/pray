@@ -25,7 +25,6 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
     @IBAction func addBarButtonAction() {
         let newPrayer = PrayerModel()
         newPrayer.prayer = inputTextView.text
-        newPrayer.date = NSDate()
         member.prayers.append(newPrayer)
         inputTextView.text = ""
         inputTextView.resignFirstResponder()

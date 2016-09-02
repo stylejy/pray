@@ -11,7 +11,7 @@ import Foundation
 class PrayerModel: NSObject {
     var prayer: String = ""
     var isOpen: Bool = false
-    var date: NSDate!
+    var date = NSDate()
     
     override init() {
         super.init()
