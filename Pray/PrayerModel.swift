@@ -19,7 +19,10 @@ class PrayerModel: NSObject {
     
     required init?(coder aDecoder: NSCoder) {
         prayer = aDecoder.decodeObject(forKey: "Prayer") as! String
-        //isOpen = aDecoder.decodeObject(forKey: "IsOpen") as! Bool
+        
+        if aDecoder.decodeObject(forKey: "IsOpen") != nil {
+            isOpen = aDecoder.decodeObject(forKey: "IsOpen") as! Bool
+        }
         
         if aDecoder.decodeObject(forKey: "Date") != nil {
             date = aDecoder.decodeObject(forKey: "Date") as! Date
