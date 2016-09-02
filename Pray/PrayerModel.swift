@@ -11,28 +11,28 @@ import Foundation
 class PrayerModel: NSObject {
     var prayer: String = ""
     var isOpen: Bool = false
-    var date = NSDate()
+    var date = Date()
     
     override init() {
         super.init()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        prayer = aDecoder.decodeObjectForKey("Prayer") as! String
-        isOpen = aDecoder.decodeObjectForKey("IsOpen") as! Bool
+        prayer = aDecoder.decodeObject(forKey: "Prayer") as! String
+        isOpen = aDecoder.decodeObject(forKey: "IsOpen") as! Bool
         
-        if aDecoder.decodeObjectForKey("Date") != nil {
-            date = aDecoder.decodeObjectForKey("Date") as! NSDate
+        if aDecoder.decodeObject(forKey: "Date") != nil {
+            date = aDecoder.decodeObject(forKey: "Date") as! Date
         } else {
-            date = NSDate()
+            date = Date()
         }
         super.init()
     }
     
     //For saving the details as a external file.
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(prayer, forKey: "Prayer")
-        aCoder.encodeObject(isOpen, forKey: "IsOpen")
-        aCoder.encodeObject(date, forKey: "Date")
+    func encodeWithCoder(_ aCoder: NSCoder) {
+        aCoder.encode(prayer, forKey: "Prayer")
+        aCoder.encode(isOpen, forKey: "IsOpen")
+        aCoder.encode(date, forKey: "Date")
     }
 }

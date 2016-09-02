@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PrayerViewControllerDelegate: class {
-    func prayerViewController(controller: PrayerViewController)
+    func prayerViewController(_ controller: PrayerViewController)
 }
 
 class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -28,7 +28,7 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
         member.prayers.append(newPrayer)
         inputTextView.text = ""
         inputTextView.resignFirstResponder()
-        addBarButton.enabled = false
+        addBarButton.isEnabled = false
         self.tableView.reloadData()
         leftBarItemController(false)
         //Used to update member view cells every time new prayer is added for the subtitles appearing properly.
@@ -42,22 +42,22 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
         leftBarItemController(false)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //inputTextView.becomeFirstResponder()
     }
     
     //Used to display the cancel bar button and hide the back button when the text view is tapped and the keyboard appears.
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         leftBarItemController(true)
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         if textView.restorationIdentifier! == "Input" {
             let oldText: NSString = inputTextView.text!
-            let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: text)
-            addBarButton.enabled = (newText.length > 0)
+            let newText: NSString = oldText.replacingCharacters(in: range, with: text)
+            addBarButton.isEnabled = (newText.length > 0)
             
             //To use 'done' button like 'add' button
             if text == "\n" {
@@ -70,24 +70,24 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
         return true
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return member.prayers.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //as! PrayerTableViewCellController is used to have access to the controller's outlets
-        let cell = tableView.dequeueReusableCellWithIdentifier("PrayerList", forIndexPath: indexPath) as! PrayerTableViewCellController
-        let prayerList = member.prayers[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PrayerList", for: indexPath) as! PrayerTableViewCellController
+        let prayerList = member.prayers[(indexPath as NSIndexPath).row]
         
         cell.prayerListLabel.numberOfLines = 0
-        cell.prayerListLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        cell.prayerListLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
       
         cell.prayerListLabel.text = prayerList.prayer
         
         //START - To form date in String type
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "dd.MMM.yyyy"
-        let dateString = formatter.stringFromDate(prayerList.date)
+        let dateString = formatter.string(from: prayerList.date as Date)
         cell.prayerDetails.text = dateString
         //End
         
@@ -95,25 +95,25 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
     }
     
     //Used to move data from a source index to a destination index when moveing a cell.
-    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        let source = member.prayers[sourceIndexPath.row]
-        let destination = member.prayers[destinationIndexPath.row]
-        member.prayers[sourceIndexPath.row] = destination
-        member.prayers[destinationIndexPath.row] = source
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let source = member.prayers[(sourceIndexPath as NSIndexPath).row]
+        let destination = member.prayers[(destinationIndexPath as NSIndexPath).row]
+        member.prayers[(sourceIndexPath as NSIndexPath).row] = destination
+        member.prayers[(destinationIndexPath as NSIndexPath).row] = source
     }
     
     //Prayer deleting function by swiping over a row.
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        member.removePrayer(indexPath.row)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        member.removePrayer((indexPath as NSIndexPath).row)
         
         let indexPaths = [indexPath]
-        tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        tableView.deleteRows(at: indexPaths, with: .automatic)
         
     }
     
     //Used to initially hide Cancel bar button to have only back button in the right position.
     //false : hide the cancel bar button and the back button appears
-    func leftBarItemController(selector: Bool) {
+    func leftBarItemController(_ selector: Bool) {
         if selector == false {
             self.navigationItem.leftItemsSupplementBackButton = true
             cancelBarButton.title = ""

@@ -22,29 +22,29 @@ class GroupManagement {
     func setUpMyPrayerGroup() {
         let name = "\u{1F64F} 나의 기도제목"
         if groupList.count == 0 || groupList[0].groupName != name {
-            groupList.insert(createNewGroupModel(name), atIndex: 0)
+            groupList.insert(createNewGroupModel(name), at: 0)
             let meMemberModel = MemberModel()
             //There is only one member in my prayer group.
             groupList[0].groupMembers.append(meMemberModel)
         }
     }
     
-    func createNewGroupModel(inputName: String) -> GroupModel {
+    func createNewGroupModel(_ inputName: String) -> GroupModel {
         let newGroup = GroupModel()
         newGroup.groupName = inputName
         return newGroup
     }
     
-    func addGroup(inputGroupName: String) {
+    func addGroup(_ inputGroupName: String) {
         groupList.append(createNewGroupModel(inputGroupName))
     }
     
-    func removeGroup(inputIndexPath: Int) {
-        groupList.removeAtIndex(inputIndexPath)
+    func removeGroup(_ inputIndexPath: Int) {
+        groupList.remove(at: inputIndexPath)
     }
     
     //START - For editing group name
-    func returnIndex(inputGroupName: String) -> Int! {
+    func returnIndex(_ inputGroupName: String) -> Int! {
         var count = 0
         for value in groupList {
             if value.groupName == inputGroupName {
@@ -59,29 +59,29 @@ class GroupManagement {
     
     //START - For saving and loading data
     func documentsDirectory() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         return paths[0]
     }
     
     func dataFilePath() -> String {
-        return (documentsDirectory() as NSString).stringByAppendingPathComponent("GroupList.plist")
+        return (documentsDirectory() as NSString).appendingPathComponent("GroupList.plist")
     }
     
     func saveGroupList() {
         let data = NSMutableData()
-        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-        archiver.encodeObject(groupList, forKey: "GroupList")
+        let archiver = NSKeyedArchiver(forWritingWith: data)
+        archiver.encode(groupList, forKey: "GroupList")
         archiver.finishEncoding()
-        data.writeToFile(dataFilePath(), atomically: true)
+        data.write(toFile: dataFilePath(), atomically: true)
     }
     
     func loadGroupList() {
         let path = dataFilePath()
         
-        if NSFileManager.defaultManager().fileExistsAtPath(path) {
-            if let data = NSData(contentsOfFile: path) {
-                let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-                groupList = unarchiver.decodeObjectForKey("GroupList") as! [GroupModel]
+        if FileManager.default.fileExists(atPath: path) {
+            if let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
+                let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+                groupList = unarchiver.decodeObject(forKey: "GroupList") as! [GroupModel]
                 unarchiver.finishDecoding()
             }
         }

@@ -9,9 +9,9 @@
 import UIKit
 
 protocol AddGroupViewControllerDelegate: class {
-    func addGroupViewControllerDidCancel(controller: AddGroupViewController)
-    func addGroupViewController(controller: AddGroupViewController, didFinishAddingValue value: String)
-    func addGroupViewController(controller: AddGroupViewController, didFinishEditingValue value: String)
+    func addGroupViewControllerDidCancel(_ controller: AddGroupViewController)
+    func addGroupViewController(_ controller: AddGroupViewController, didFinishAddingValue value: String)
+    func addGroupViewController(_ controller: AddGroupViewController, didFinishEditingValue value: String)
 }
 
 class AddGroupViewController: UITableViewController, UITextFieldDelegate {
@@ -40,7 +40,7 @@ class AddGroupViewController: UITableViewController, UITextFieldDelegate {
     
     //Prevents the text field turning grey.
     //Makes the cell not selectable.
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
     }
     
@@ -48,20 +48,20 @@ class AddGroupViewController: UITableViewController, UITextFieldDelegate {
     //The view controller receives the viewWillAppear() message just before it becomes visible. 
     //That is a perfect time to make the text field active. You do this by sending it the becomeFirstResponder() message.
     //Makes the cursor on the textfield automatically.
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         textField.becomeFirstResponder()
     }
     
     
     //Makes "Done" bar button activated only if the textfield gets characters.
-    func textField(textField: UITextField,
-                   shouldChangeCharactersInRange range: NSRange,
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
                                                  replacementString string: String) -> Bool {
         let oldText: NSString = textField.text!
-        let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
+        let newText: NSString = oldText.replacingCharacters(in: range, with: string)
         
-        doneBarButton.enabled = (newText.length > 0)
+        doneBarButton.isEnabled = (newText.length > 0)
         
         return true
     }
@@ -72,7 +72,7 @@ class AddGroupViewController: UITableViewController, UITextFieldDelegate {
         if let group = groupToEdit {
             title = "그룹 정보"
             textField.text = group.groupName
-            doneBarButton.enabled = true
+            doneBarButton.isEnabled = true
         }
     }
 }

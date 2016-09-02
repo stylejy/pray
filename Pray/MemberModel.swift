@@ -17,29 +17,29 @@ class MemberModel: NSObject {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        name = aDecoder.decodeObjectForKey("MemberName") as! String
+        name = aDecoder.decodeObject(forKey: "MemberName") as! String
         
         //First if statement is used to convert old data type(String) to new data type(PrayerModel) for old version users only.
-        if (aDecoder.decodeObjectForKey("Prayers") as? [String]) != nil {
-            for stringPrayer in aDecoder.decodeObjectForKey("Prayers") as! [String] {
+        if (aDecoder.decodeObject(forKey: "Prayers") as? [String]) != nil {
+            for stringPrayer in aDecoder.decodeObject(forKey: "Prayers") as! [String] {
                 let newPrayerModel = PrayerModel()
                 newPrayerModel.prayer = stringPrayer
                 prayers.append(newPrayerModel)
             }
         } else {
-            prayers = aDecoder.decodeObjectForKey("Prayers") as! [PrayerModel]
+            prayers = aDecoder.decodeObject(forKey: "Prayers") as! [PrayerModel]
         }
         
         super.init()
     }
     
     //For saving the details as a external file.
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(name, forKey: "MemberName")
-        aCoder.encodeObject(prayers, forKey: "Prayers")
+    func encodeWithCoder(_ aCoder: NSCoder) {
+        aCoder.encode(name, forKey: "MemberName")
+        aCoder.encode(prayers, forKey: "Prayers")
     }
     
-    func removePrayer(inputIndex: Int) {
-        prayers.removeAtIndex(inputIndex)
+    func removePrayer(_ inputIndex: Int) {
+        prayers.remove(at: inputIndex)
     }
 }

@@ -20,17 +20,17 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
         super.tableView = tableViewFromStoryboard
     }
     
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return (indexPath.row != 0)
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return ((indexPath as NSIndexPath).row != 0)
     }
 
-    func addGroupViewControllerDidCancel(controller: AddGroupViewController) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func addGroupViewControllerDidCancel(_ controller: AddGroupViewController) {
+        dismiss(animated: true, completion: nil)
     }
     
     //**Have to understand
     //For adding new group
-    func addGroupViewController(controller: AddGroupViewController, didFinishAddingValue value: String) {
+    func addGroupViewController(_ controller: AddGroupViewController, didFinishAddingValue value: String) {
         
         //newRowIndex must be placed before the adding function to return the proper number for the new row index.
         let newRowIndex = groupResults.groupList.count
@@ -41,63 +41,63 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
             print(results.returnGroupName())
         }*/
         
-        let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
         let indexPaths = [indexPath]
-        tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        tableView.insertRows(at: indexPaths, with: .automatic)
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         
     }
     
     //For editing a group's name
-    func addGroupViewController(controller: AddGroupViewController, didFinishEditingValue value: String) {
+    func addGroupViewController(_ controller: AddGroupViewController, didFinishEditingValue value: String) {
         //parameter value 는 바뀐 이름을 전송해 주고 groupResults.returnIndex(value)는 원래 선택 되었던 셀의 index 를 리턴해 준다.
         if let index = groupResults.returnIndex(value) {
             //Database 상의 바뀐 이름은 바로 적용이 되나, 보여지는 셀에서는 아래와 같이 해줘야 업데이트가 된다.
-            let indexPath = NSIndexPath(forRow: index, inSection: 0)
-            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
                 let label = cell.viewWithTag(1000) as! UILabel
                 label.text = value
             }
         }
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         
     }
     
     //This method is used to go to the member list scene or the my prayer list scene by which cell is selected.
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0 {
-            performSegueWithIdentifier("MyPrayerManagement", sender: nil)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).row == 0 {
+            performSegue(withIdentifier: "MyPrayerManagement", sender: nil)
         } else {
-            performSegueWithIdentifier("ShowMemberList", sender: tableView.cellForRowAtIndexPath(indexPath))
+            performSegue(withIdentifier: "ShowMemberList", sender: tableView.cellForRow(at: indexPath))
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddGroup" {
-            let navigationController = segue.destinationViewController as! UINavigationController
+            let navigationController = segue.destination as! UINavigationController
             
             let controller = navigationController.topViewController as! AddGroupViewController
             
             controller.delegate = self
         } else if segue.identifier == "EditGroupName" {
-            let navigationController = segue.destinationViewController as! UINavigationController
+            let navigationController = segue.destination as! UINavigationController
             
             let controller = navigationController.topViewController as! AddGroupViewController
             
             controller.delegate = self
             
-            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
-                controller.groupToEdit = groupResults!.groupList[indexPath.row]
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                controller.groupToEdit = groupResults!.groupList[(indexPath as NSIndexPath).row]
             }
         } else if segue.identifier == "ShowMemberList" {
-            let controller = segue.destinationViewController as! MemberTableViewController
+            let controller = segue.destination as! MemberTableViewController
             
-            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
-                controller.parentGroup = groupResults!.groupList[indexPath.row]
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                controller.parentGroup = groupResults!.groupList[(indexPath as NSIndexPath).row]
             }
         } else if segue.identifier == "MyPrayerManagement" {
-            let controller = segue.destinationViewController as! MyPrayerViewController
+            let controller = segue.destination as! MyPrayerViewController
             
             controller.me = groupResults.groupList[0].groupMembers[0]
             
@@ -116,17 +116,17 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
     }
 
     //Returns the number of the groups added.
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupResults.groupList.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GroupList", forIndexPath: indexPath) as UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupList", for: indexPath) as UITableViewCell
         
         //** need to understand
         let label = cell.viewWithTag(1000) as! UILabel
         
-        let groupList = groupResults!.groupList[indexPath.row]
+        let groupList = groupResults!.groupList[(indexPath as NSIndexPath).row]
         
         label.text = groupList.groupName
         
@@ -134,30 +134,30 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
     }
     
     //Used to move data from a source index to a destination index when moveing a cell.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        let source = groupResults.groupList[sourceIndexPath.row]
-        let destination = groupResults.groupList[destinationIndexPath.row]
-        groupResults.groupList[sourceIndexPath.row] = destination
-        groupResults.groupList[destinationIndexPath.row] = source
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let source = groupResults.groupList[(sourceIndexPath as NSIndexPath).row]
+        let destination = groupResults.groupList[(destinationIndexPath as NSIndexPath).row]
+        groupResults.groupList[(sourceIndexPath as NSIndexPath).row] = destination
+        groupResults.groupList[(destinationIndexPath as NSIndexPath).row] = source
     }
     
     
     //Prevents users from deleting 나의 기도제목 group.
     //Delete function doesn't appear on 나의 기도제목 cell.
-    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        if indexPath.row != 0 {
-            return UITableViewCellEditingStyle.Delete
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if (indexPath as NSIndexPath).row != 0 {
+            return UITableViewCellEditingStyle.delete
         } else {
-            return UITableViewCellEditingStyle.None
+            return UITableViewCellEditingStyle.none
         }
     }
     
     //Group deleting function by swiping over a row.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        groupResults.removeGroup(indexPath.row)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        groupResults.removeGroup((indexPath as NSIndexPath).row)
         
         let indexPaths = [indexPath]
-        tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        tableView.deleteRows(at: indexPaths, with: .automatic)
     }
     
    

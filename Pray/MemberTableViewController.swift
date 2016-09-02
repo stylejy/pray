@@ -14,36 +14,36 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
     var parentGroup: GroupModel!
     @IBOutlet var tableViewFromStoryboard: LPRTableView!
     
-    func addMemberViewControllerDidCancel(controller: AddMemberViewController) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func addMemberViewControllerDidCancel(_ controller: AddMemberViewController) {
+        dismiss(animated: true, completion: nil)
     }
     
-    func addMemberViewController(controller: AddMemberViewController, didFinishAddingValue value: String) {
+    func addMemberViewController(_ controller: AddMemberViewController, didFinishAddingValue value: String) {
         
         let newRowIndex = parentGroup.groupMembers.count
         
-        let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
-        parentGroup.giveGroupMemberName(indexPath.row, inputName: value)
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        parentGroup.giveGroupMemberName((indexPath as NSIndexPath).row, inputName: value)
 
         let indexPaths = [indexPath]
-        tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        tableView.insertRows(at: indexPaths, with: .automatic)
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    func addMemberViewController(controller: AddMemberViewController, didFinishEditingValue value: String) {
+    func addMemberViewController(_ controller: AddMemberViewController, didFinishEditingValue value: String) {
         if let index = parentGroup.returnIndex(value) {
             //Database 상의 바뀐 이름은 바로 적용이 되나, 보여지는 셀에서는 아래와 같이 해줘야 업데이트가 된다.
-            let indexPath = NSIndexPath(forRow: index, inSection: 0)
-            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
                 cell.textLabel?.text = value
             }
         }
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     //Used to update member view cells every time new prayer is added for the subtitles appearing properly.
-    func prayerViewController(controller: PrayerViewController) {
+    func prayerViewController(_ controller: PrayerViewController) {
         self.tableView.reloadData()
     }
     
@@ -54,7 +54,7 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
         title = parentGroup.groupName
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //inputTextView.becomeFirstResponder()
     }
@@ -66,21 +66,21 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return parentGroup.groupMembers.count
     }
 
     //Need to understand...
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("MemberList")! as UITableViewCell
+        let cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "MemberList")! as UITableViewCell
         
-        let member = parentGroup.groupMembers[indexPath.row]
+        let member = parentGroup.groupMembers[(indexPath as NSIndexPath).row]
         
         cell!.textLabel?.text = member.name
         
@@ -97,54 +97,54 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
     }
     
     //Used to move data from a source index to a destination index when moveing a cell.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        let source = parentGroup.groupMembers[sourceIndexPath.row]
-        let destination = parentGroup.groupMembers[destinationIndexPath.row]
-        parentGroup.groupMembers[sourceIndexPath.row] = destination
-        parentGroup.groupMembers[destinationIndexPath.row] = source
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let source = parentGroup.groupMembers[(sourceIndexPath as NSIndexPath).row]
+        let destination = parentGroup.groupMembers[(destinationIndexPath as NSIndexPath).row]
+        parentGroup.groupMembers[(sourceIndexPath as NSIndexPath).row] = destination
+        parentGroup.groupMembers[(destinationIndexPath as NSIndexPath).row] = source
         self.tableView.reloadData()
     }
     
-    func chooseRandomPrayerForDetailLabel(inputMember: MemberModel) -> Int{
+    func chooseRandomPrayerForDetailLabel(_ inputMember: MemberModel) -> Int{
         return Int(arc4random_uniform(UInt32(inputMember.prayers.count)))
     }
     
-    func cellForTableView(tableView: UITableView) -> UITableViewCell {
+    func cellForTableView(_ tableView: UITableView) -> UITableViewCell {
         let cellIdentifier = "MemberList"
-        if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) {
             return cell
         } else {
-            return UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
+            return UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("PrayerManagement", sender: tableView.cellForRowAtIndexPath(indexPath))
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "PrayerManagement", sender: tableView.cellForRow(at: indexPath))
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddMember" {
-            let navigationController = segue.destinationViewController as! UINavigationController
+            let navigationController = segue.destination as! UINavigationController
             
             let controller = navigationController.topViewController as! AddMemberViewController
             
             controller.delegate = self
         } else if segue.identifier == "EditMemberName" {
-            let navigationController = segue.destinationViewController as! UINavigationController
+            let navigationController = segue.destination as! UINavigationController
             
             let controller = navigationController.topViewController as! AddMemberViewController
             
             controller.delegate = self
                         
             //Initialise memberToEdit variable in AddMemberViewController class.
-            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
-                controller.memberToEdit = parentGroup.groupMembers[indexPath.row]
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                controller.memberToEdit = parentGroup.groupMembers[(indexPath as NSIndexPath).row]
             }
         } else if segue.identifier == "PrayerManagement" {
-            let controller = segue.destinationViewController as! PrayerViewController
+            let controller = segue.destination as! PrayerViewController
             
-            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
-                controller.member = parentGroup.groupMembers[indexPath.row]
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                controller.member = parentGroup.groupMembers[(indexPath as NSIndexPath).row]
             }
             
             controller.delegate = self
@@ -152,11 +152,11 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
     }
     
     //Member deleting function by swiping over a row.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        parentGroup.removeMember(indexPath.row)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        parentGroup.removeMember((indexPath as NSIndexPath).row)
         
         let indexPaths = [indexPath]
-        tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        tableView.deleteRows(at: indexPaths, with: .automatic)
         
     }
 

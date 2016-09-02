@@ -17,12 +17,12 @@ class GroupModel: NSObject {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        groupName = aDecoder.decodeObjectForKey("GroupName") as! String
-        groupMembers = aDecoder.decodeObjectForKey("GroupMembers") as! [MemberModel]
+        groupName = aDecoder.decodeObject(forKey: "GroupName") as! String
+        groupMembers = aDecoder.decodeObject(forKey: "GroupMembers") as! [MemberModel]
         super.init()
     }
     
-    func returnIndex(inputGroupName: String) -> Int! {
+    func returnIndex(_ inputGroupName: String) -> Int! {
         var count = 0
         for value in groupMembers {
             if value.name == inputGroupName {
@@ -34,26 +34,26 @@ class GroupModel: NSObject {
         return nil
     }
     
-    func giveGroupMemberName(inputIndex: Int, inputName: String) {
+    func giveGroupMemberName(_ inputIndex: Int, inputName: String) {
         let newMember = MemberModel()
         newMember.name = inputName
         groupMembers.append(newMember)
     }
     
-    func giveGroupMemberPray(inputIndex: Int, inputPrayer: String) {
+    func giveGroupMemberPray(_ inputIndex: Int, inputPrayer: String) {
         let newPrayer = PrayerModel()
         newPrayer.prayer = inputPrayer
         groupMembers[inputIndex].prayers.append(newPrayer)
     }
     
-    func removeMember(inputIndex: Int) {
-        groupMembers.removeAtIndex(inputIndex)
+    func removeMember(_ inputIndex: Int) {
+        groupMembers.remove(at: inputIndex)
     }
     
     //page p137-138
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(groupName, forKey: "GroupName")
-        aCoder.encodeObject(groupMembers, forKey: "GroupMembers")
+    func encodeWithCoder(_ aCoder: NSCoder) {
+        aCoder.encode(groupName, forKey: "GroupName")
+        aCoder.encode(groupMembers, forKey: "GroupMembers")
     }
     
 }
