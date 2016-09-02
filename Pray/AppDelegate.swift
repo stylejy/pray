@@ -15,12 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let groupManagement = GroupManagement()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: Any]?) -> Bool {
+    @nonobjc func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         let navigationController = window!.rootViewController as! UINavigationController
         let controller = navigationController.viewControllers[0] as! GroupTableViewController
-        controller.groupResults = groupManagement
+        controller.groupManagement = groupManagement
 
         return true
     }
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        saveGroup()
+        groupManagement.saveGroupList()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -43,12 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        saveGroup()
-    }
-    
-    func saveGroup() {
         groupManagement.saveGroupList()
     }
-
 }
 
