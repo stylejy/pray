@@ -8,7 +8,7 @@
 import UIKit
 
 class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDelegate {
-    var groupManagement: GroupManagement!
+    var groupResults: GroupManagement!
     
     @IBOutlet var tableViewFromStoryboard: LPRTableView!
     
@@ -33,11 +33,11 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
     func addGroupViewController(_ controller: AddGroupViewController, didFinishAddingValue value: String) {
         
         //newRowIndex must be placed before the adding function to return the proper number for the new row index.
-        let newRowIndex = groupManagement.groupList.count
-        groupManagement.addGroup(value)
+        let newRowIndex = groupResults.groupList.count
+        groupResults.addGroup(value)
         
         //For testing.
-        /*for results in groupManagement.returnGroupList() {
+        /*for results in groupResults.returnGroupList() {
             print(results.returnGroupName())
         }*/
         
@@ -51,8 +51,8 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
     
     //For editing a group's name
     func addGroupViewController(_ controller: AddGroupViewController, didFinishEditingValue value: String) {
-        //parameter value 는 바뀐 이름을 전송해 주고 groupManagement.returnIndex(value)는 원래 선택 되었던 셀의 index 를 리턴해 준다.
-        if let index = groupManagement.returnIndex(value) {
+        //parameter value 는 바뀐 이름을 전송해 주고 groupResults.returnIndex(value)는 원래 선택 되었던 셀의 index 를 리턴해 준다.
+        if let index = groupResults.returnIndex(value) {
             //Database 상의 바뀐 이름은 바로 적용이 되나, 보여지는 셀에서는 아래와 같이 해줘야 업데이트가 된다.
             let indexPath = IndexPath(row: index, section: 0)
             if let cell = tableView.cellForRow(at: indexPath) {
@@ -88,18 +88,18 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
             controller.delegate = self
             
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
-                controller.groupToEdit = groupManagement!.groupList[(indexPath as NSIndexPath).row]
+                controller.groupToEdit = groupResults!.groupList[(indexPath as NSIndexPath).row]
             }
         } else if segue.identifier == "ShowMemberList" {
             let controller = segue.destination as! MemberTableViewController
             
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
-                controller.parentGroup = groupManagement!.groupList[(indexPath as NSIndexPath).row]
+                controller.parentGroup = groupResults!.groupList[(indexPath as NSIndexPath).row]
             }
         } else if segue.identifier == "MyPrayerManagement" {
             let controller = segue.destination as! MyPrayerViewController
             
-            controller.me = groupManagement.groupList[0].groupMembers[0]
+            controller.me = groupResults.groupList[0].groupMembers[0]
             
 
         }
@@ -117,7 +117,7 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
 
     //Returns the number of the groups added.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupManagement.groupList.count
+        return groupResults.groupList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -126,7 +126,7 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
         //** need to understand
         let label = cell.viewWithTag(1000) as! UILabel
         
-        let groupList = groupManagement!.groupList[(indexPath as NSIndexPath).row]
+        let groupList = groupResults!.groupList[(indexPath as NSIndexPath).row]
         
         label.text = groupList.groupName
         
@@ -135,10 +135,10 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
     
     //Used to move data from a source index to a destination index when moveing a cell.
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let source = groupManagement.groupList[(sourceIndexPath as NSIndexPath).row]
-        let destination = groupManagement.groupList[(destinationIndexPath as NSIndexPath).row]
-        groupManagement.groupList[(sourceIndexPath as NSIndexPath).row] = destination
-        groupManagement.groupList[(destinationIndexPath as NSIndexPath).row] = source
+        let source = groupResults.groupList[(sourceIndexPath as NSIndexPath).row]
+        let destination = groupResults.groupList[(destinationIndexPath as NSIndexPath).row]
+        groupResults.groupList[(sourceIndexPath as NSIndexPath).row] = destination
+        groupResults.groupList[(destinationIndexPath as NSIndexPath).row] = source
     }
     
     
@@ -154,7 +154,7 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
     
     //Group deleting function by swiping over a row.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        groupManagement.removeGroup((indexPath as NSIndexPath).row)
+        groupResults.removeGroup((indexPath as NSIndexPath).row)
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)

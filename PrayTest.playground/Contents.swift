@@ -31,7 +31,7 @@ class GroupManagement {
     
     func addGroup(inputGroupName: String) {
         let newGroup = GroupModel()
-        newGroup.setGroupName(inputName: inputGroupName)
+        newGroup.setGroupName(inputGroupName)
         groupList.append(newGroup)
     }
     

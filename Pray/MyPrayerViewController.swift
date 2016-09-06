@@ -51,8 +51,8 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView.restorationIdentifier! == "InputForMe" {
-            let oldText: NSString = inputTextView.text! as NSString
-            let newText: NSString = oldText.replacingCharacters(in: range, with: text) as NSString
+            let oldText: NSString = inputTextView.text!
+            let newText: NSString = oldText.replacingCharacters(in: range, with: text)
             addBarButton.isEnabled = (newText.length > 0)
             
             //To use 'done' button like 'add' button

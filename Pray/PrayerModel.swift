@@ -19,10 +19,14 @@ class PrayerModel: NSObject {
     
     required init?(coder aDecoder: NSCoder) {
         prayer = aDecoder.decodeObject(forKey: "Prayer") as! String
+<<<<<<< HEAD
         
         if aDecoder.decodeObject(forKey: "IsOpen") != nil {
             isOpen = aDecoder.decodeObject(forKey: "IsOpen") as! Bool
         }
+=======
+        isOpen = aDecoder.decodeObject(forKey: "IsOpen") as! Bool
+>>>>>>> parent of 1dd4024... codes for Swift 3.0
         
         if aDecoder.decodeObject(forKey: "Date") != nil {
             date = aDecoder.decodeObject(forKey: "Date") as! Date

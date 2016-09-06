@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationController = window!.rootViewController as! UINavigationController
         let controller = navigationController.viewControllers[0] as! GroupTableViewController
-        controller.groupManagement = groupManagement
+        controller.groupResults = groupManagement
 
         return true
     }
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        groupManagement.saveGroupList()
+        saveGroup()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -43,7 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
+        saveGroup()
+    }
+    
+    func saveGroup() {
         groupManagement.saveGroupList()
     }
+
 }
 
