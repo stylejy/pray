@@ -25,7 +25,7 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
     @IBAction func addBarButtonAction() {
         let newPrayer = PrayerModel()
         newPrayer.prayer = inputTextView.text
-        newPrayer.date = NSDate()
+        newPrayer.date = NSDate() as Date
         member.prayers.append(newPrayer)
         inputTextView.text = ""
         inputTextView.resignFirstResponder()
@@ -56,8 +56,8 @@ class PrayerViewController: UIViewController, UITextViewDelegate, UITableViewDel
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         if textView.restorationIdentifier! == "Input" {
-            let oldText: NSString = inputTextView.text!
-            let newText: NSString = oldText.replacingCharacters(in: range, with: text)
+            let oldText: NSString = inputTextView.text! as NSString
+            let newText: NSString = oldText.replacingCharacters(in: range, with: text) as NSString
             addBarButton.isEnabled = (newText.length > 0)
             
             //To use 'done' button like 'add' button

@@ -1,0 +1,87 @@
+
+/* Class = "UIButton"; normalTitle = "Export all prayers which are added today in this group"; ObjectID = "2ge-cT-Lq5"; */
+"2ge-cT-Lq5.normalTitle" = "Export all prayers which are added today in this group";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "3Ju-1n-MMO"; */
+"3Ju-1n-MMO.title" = "Cancel";
+
+/* Class = "UILabel"; text = "새로운 기도제목:"; ObjectID = "3KU-hw-zLJ"; */
+"3KU-hw-zLJ.text" = "새로운 기도제목:";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "53I-nk-IYs"; */
+"53I-nk-IYs.title" = "Cancel";
+
+/* Class = "UILabel"; text = "Last updated date"; ObjectID = "7yC-k4-NmI"; */
+"7yC-k4-NmI.text" = "Last updated date";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "918-Ek-kYU"; */
+"918-Ek-kYU.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Export all prayers in this group"; ObjectID = "BG5-QU-maR"; */
+"BG5-QU-maR.normalTitle" = "Export all prayers in this group";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "CtM-r5-kb9"; */
+"CtM-r5-kb9.title" = "Cancel";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "EJB-Vu-NJe"; */
+"EJB-Vu-NJe.title" = "Back";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "HrZ-mm-bei"; */
+"HrZ-mm-bei.title" = "Cancel";
+
+/* Class = "UILabel"; text = "Prayer"; ObjectID = "Hsa-U2-92H"; */
+"Hsa-U2-92H.text" = "Prayer";
+
+/* Class = "UINavigationItem"; title = "(Name of the selected member)"; ObjectID = "K6s-dE-xYN"; */
+"K6s-dE-xYN.title" = "(Name of the selected member)";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "O0L-6z-ruY"; */
+"O0L-6z-ruY.text" = "Title";
+
+/* Class = "UILabel"; text = "새로운 기도제목:"; ObjectID = "PTk-i6-N6Q"; */
+"PTk-i6-N6Q.text" = "새로운 기도제목:";
+
+/* Class = "UINavigationItem"; title = "My Group"; ObjectID = "Qew-bB-iIV"; */
+"Qew-bB-iIV.title" = "My Group";
+
+/* Class = "UINavigationItem"; title = "그룹 추가"; ObjectID = "Vvv-ME-mAF"; */
+"Vvv-ME-mAF.title" = "그룹 추가";
+
+/* Class = "UITextField"; placeholder = "멤버 이름을 입력 하세요."; ObjectID = "Xlb-Oj-idJ"; */
+"Xlb-Oj-idJ.placeholder" = "멤버 이름을 입력 하세요.";
+
+/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "Zn8-WJ-nZg"; */
+"Zn8-WJ-nZg.title" = "Done";
+
+/* Class = "UINavigationItem"; title = "(Name of the selected group)"; ObjectID = "aBv-Z3-Xqf"; */
+"aBv-Z3-Xqf.title" = "(Name of the selected group)";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "aJa-RK-vcS"; */
+"aJa-RK-vcS.title" = "Back";
+
+/* Class = "UISegmentedControl"; e2P-bx-HOX.segmentTitles[0] = "Open"; ObjectID = "e2P-bx-HOX"; */
+"e2P-bx-HOX.segmentTitles[0]" = "Open";
+
+/* Class = "UISegmentedControl"; e2P-bx-HOX.segmentTitles[1] = "Private"; ObjectID = "e2P-bx-HOX"; */
+"e2P-bx-HOX.segmentTitles[1]" = "Private";
+
+/* Class = "UINavigationItem"; title = "나의 기도제목"; ObjectID = "eAd-PB-BDR"; */
+"eAd-PB-BDR.title" = "나의 기도제목";
+
+/* Class = "UILabel"; text = "기도제목을 입력해 주세요"; ObjectID = "g0R-HB-k6f"; */
+"g0R-HB-k6f.text" = "기도제목을 입력해 주세요";
+
+/* Class = "UILabel"; text = "Prayer"; ObjectID = "hoD-fM-mcP"; */
+"hoD-fM-mcP.text" = "Prayer";
+
+/* Class = "UINavigationItem"; title = "멤버 추가"; ObjectID = "hvu-m5-cI7"; */
+"hvu-m5-cI7.title" = "멤버 추가";
+
+/* Class = "UITextField"; placeholder = "그룹 이름을 입력 하세요."; ObjectID = "uUz-JB-WSO"; */
+"uUz-JB-WSO.placeholder" = "그룹 이름을 입력 하세요.";
+
+/* Class = "UITableViewSection"; headerTitle = "그룹 이름은 수정 가능합니다."; ObjectID = "wCP-hK-ZnB"; */
+"wCP-hK-ZnB.headerTitle" = "그룹 이름은 수정 가능합니다.";
+
+/* Class = "UILabel"; text = "Last updated date"; ObjectID = "xHj-tH-Pqk"; */
+"xHj-tH-Pqk.text" = "Last updated date";
