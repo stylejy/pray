@@ -11,7 +11,11 @@ import Foundation
 class PrayerModel: NSObject {
     var prayer: String = ""
     var isOpen: Bool = false
+<<<<<<< HEAD
     var date = Date()
+=======
+    var date: NSDate!
+>>>>>>> parent of ef60af4... My prayer scene's bug fixed(crash when new prayer added)
     
     override init() {
         super.init()
