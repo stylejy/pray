@@ -14,14 +14,32 @@ protocol MyPrayerViewControllerDelegate: class {
 
 class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
     var me: MemberModel!
+    var tempIndexPath: IndexPath?
     
-    @IBOutlet weak var addBarButton: UIBarButtonItem!
+    let doneBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(MyPrayerViewController.doneBarButtonAction))
+    //addBarButton should not be weak to be changeable with doneBarButton.
+    @IBOutlet var addBarButton: UIBarButtonItem!
     @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var tableView: LPRTableView!
     @IBOutlet weak var segmentedControllerForAdding: UISegmentedControl!
     @IBOutlet weak var cancelBarButton: UIBarButtonItem!
- 
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 65
+        leftBarItemController(false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //inputTextView.becomeFirstResponder()
+    }
+ 
+//START - Actions
     @IBAction func addBarButtonAction() {
         let newPrayer = PrayerModel()
         newPrayer.prayer = inputTextView.text
@@ -37,12 +55,102 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
         //delegate?.myPrayerViewController(self)
     }
     
+    func doneBarButtonAction() {
+        self.me.prayers[tempIndexPath!.row].prayer = inputTextView.text
+        self.me.prayers[tempIndexPath!.row].date = Date()
+        inputTextView.text = ""
+        inputTextView.resignFirstResponder()
+        self.tableView.reloadData()
+        
+        changeControllerSet(false)
+    }
+    
     //It clears the text view and hide the keyboard
     @IBAction func cancelBarButtonAction() {
         inputTextView.text = ""
         inputTextView.resignFirstResponder()
-        leftBarItemController(false)
+        
+        changeControllerSet(false)
     }
+//END - Actions
+    
+//START - Change Controllers
+    func changeControllerSet(_ switchValue: Bool) {
+        leftBarItemController(switchValue)
+        //The next lines are only needed with doneBarButton.
+        if self.navigationItem.rightBarButtonItem == doneBarButton {
+            rightBarItemController(switchValue)
+            selectedCellController(switchValue)
+            changeDescriptionTitle(switchValue)
+            changeColour(switchValue)
+        }
+    }
+    
+    //Used to initially hide Cancel bar button to have only back button in the right position.
+    //false : hide the cancel bar button and the back button appears
+    func leftBarItemController(_ switchValue: Bool) {
+        if switchValue == false {
+            self.navigationItem.leftItemsSupplementBackButton = true
+            cancelBarButton.title = ""
+        } else {
+            self.navigationItem.leftItemsSupplementBackButton = false
+            cancelBarButton.title = "Cancel"
+        }
+    }
+    
+    //If true, doneBarButton appears, otherwise, addBarButton comes.
+    func rightBarItemController(_ switchValue: Bool) {
+        if switchValue == false {
+            if self.navigationItem.rightBarButtonItem != self.addBarButton {
+                self.navigationItem.setRightBarButton(self.addBarButton, animated: true)
+                self.addBarButton.isEnabled = false
+            }
+        } else {
+            self.navigationItem.setRightBarButton(self.doneBarButton, animated: true)
+        }
+    }
+    
+    func selectedCellController(_ switchValue: Bool) {
+        if switchValue == true {
+            //** Makes a cell sliding in
+            self.tableView.setEditing(false, animated: true)
+            self.tableView.isUserInteractionEnabled = false
+        } else {
+            self.tableView.isUserInteractionEnabled = true
+        }
+    }
+    
+    //For the description label just above the textView.
+    func changeDescriptionTitle(_ switchValue: Bool) {
+        let label = view.viewWithTag(1000) as! UILabel
+        if switchValue == true {
+            label.text = "기도 제목 수정:"
+        } else {
+            label.text = "새로운 기도제목:"
+        }
+    }
+    
+    func changeColour(_ switchValue: Bool) {
+        let colour = ColourSupporter()
+        let cell = self.tableView.cellForRow(at: tempIndexPath!) as! MyPrayerTableViewCellController
+        
+        if switchValue == true {
+            self.navigationController?.navigationBar.barTintColor = colour.yellow
+            self.view.backgroundColor = colour.yellow
+            
+            cell.backgroundColor = colour.red
+            cell.myPrayerListLabel.textColor = colour.white
+            cell.prayerDetails.textColor = colour.white
+        } else {
+            self.navigationController?.navigationBar.barTintColor = colour.aqua
+            self.view.backgroundColor = colour.aqua
+            
+            cell.backgroundColor = colour.white
+            cell.myPrayerListLabel.textColor = colour.black
+            cell.prayerDetails.textColor = colour.black
+        }
+    }
+//END - Change Controllers
     
     //Used to display the cancel bar button and hide the back button when the text view is tapped and the keyboard appears.
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -56,13 +164,16 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
             addBarButton.isEnabled = (newText.length > 0)
             
             //To use 'done' button like 'add' button
-            if text == "\n" {
+            //Different functions will be called by which button is tapped.
+            if text == "\n" && self.navigationItem.rightBarButtonItem == addBarButton {
                 addBarButtonAction()
             }
-        } else {
-            
+            else if text == "\n" && self.navigationItem.rightBarButtonItem == doneBarButton {
+                //For editing.
+                //doneBarButtonAction includes controller functions
+                doneBarButtonAction()
+            }
         }
-        
         return true
     }
     
@@ -103,38 +214,23 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 65
-        leftBarItemController(false)
-    }
-    
-    //Used to initially hide Cancel bar button to have only back button in the right position.
-    //false : hide the cancel bar button and the back button appears
-    func leftBarItemController(_ selector: Bool) {
-        if selector == false {
-            self.navigationItem.leftItemsSupplementBackButton = true
-            cancelBarButton.title = ""
-        } else {
-            self.navigationItem.leftItemsSupplementBackButton = false
-            cancelBarButton.title = "Cancel"
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //inputTextView.becomeFirstResponder()
-    }
     
     //Activate swipeable editing buttons for cells.
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         //Edit button
         let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+            self.inputTextView.text = self.me.prayers[indexPath.row].prayer
+            self.inputTextView.becomeFirstResponder()
             
+            //This is used for doneBarButtonAction function.
+            self.tempIndexPath = indexPath
+            
+            self.rightBarItemController(true)
+            self.changeColour(true)
+            
+            self.selectedCellController(true)
+            
+            self.changeDescriptionTitle(true)
         }
         edit.backgroundColor = UIColor(red: 238 / 255, green: 186 / 255, blue: 76 / 255, alpha: 1.0)
         
@@ -153,7 +249,7 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
             myAlertController.addAction(yesAction)
             
             let noAction: UIAlertAction = UIAlertAction(title: "아니요", style: .default) { action -> Void in
-                //Do some stuff
+                
             }
             myAlertController.addAction(noAction)
             

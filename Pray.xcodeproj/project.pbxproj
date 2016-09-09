@@ -16,6 +16,7 @@
 		C13FB5C41D33D3CB0008A72F /* GroupManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13FB5C31D33D3CB0008A72F /* GroupManagement.swift */; };
 		C13FB5C61D353A810008A72F /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13FB5C51D353A810008A72F /* AddGroupViewController.swift */; };
 		C1435A091D5917DE003F2010 /* MemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1435A081D5917DE003F2010 /* MemberModel.swift */; };
+		C14A74521D8361960004697A /* ColourSupporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A74511D8361960004697A /* ColourSupporter.swift */; };
 		C1623A8D1D69CA230008D4A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1623A8B1D69CA230008D4A0 /* Main.storyboard */; };
 		C1623A8F1D6A59050008D4A0 /* PrayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1623A8E1D6A59050008D4A0 /* PrayerModel.swift */; };
 		C162CB001D563C7E00BB17AC /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C162CAFF1D563C7E00BB17AC /* AddMemberViewController.swift */; };
@@ -23,7 +24,6 @@
 		C16CC7CB1D5C8CAF0061AB7A /* PrayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16CC7CA1D5C8CAF0061AB7A /* PrayerViewController.swift */; };
 		C1AF9B061D6B259D00EB6910 /* MyPrayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF9B051D6B259D00EB6910 /* MyPrayerViewController.swift */; };
 		C1AF9B081D6CA5B800EB6910 /* MyPrayerTableViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF9B071D6CA5B800EB6910 /* MyPrayerTableViewCellController.swift */; };
-		C1F896CB1D6F638700CC44C1 /* SupporterClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F896CA1D6F638700CC44C1 /* SupporterClass.swift */; };
 		C1F896CE1D71EBAF00CC44C1 /* Licence.txt in Resources */ = {isa = PBXBuildFile; fileRef = C1F896CD1D71EBAF00CC44C1 /* Licence.txt */; };
 		C1F896D01D71EC3400CC44C1 /* LPRTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F896CF1D71EC3400CC44C1 /* LPRTableView.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +42,7 @@
 		C13FB5C31D33D3CB0008A72F /* GroupManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupManagement.swift; path = ../GroupManagement.swift; sourceTree = "<group>"; };
 		C13FB5C51D353A810008A72F /* AddGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupViewController.swift; sourceTree = "<group>"; };
 		C1435A081D5917DE003F2010 /* MemberModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberModel.swift; sourceTree = "<group>"; };
+		C14A74511D8361960004697A /* ColourSupporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourSupporter.swift; sourceTree = "<group>"; };
 		C1623A8C1D69CA230008D4A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1623A8E1D6A59050008D4A0 /* PrayerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrayerModel.swift; sourceTree = "<group>"; };
 		C162CAFF1D563C7E00BB17AC /* AddMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
@@ -49,7 +50,6 @@
 		C16CC7CA1D5C8CAF0061AB7A /* PrayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrayerViewController.swift; sourceTree = "<group>"; };
 		C1AF9B051D6B259D00EB6910 /* MyPrayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrayerViewController.swift; sourceTree = "<group>"; };
 		C1AF9B071D6CA5B800EB6910 /* MyPrayerTableViewCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrayerTableViewCellController.swift; sourceTree = "<group>"; };
-		C1F896CA1D6F638700CC44C1 /* SupporterClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupporterClass.swift; sourceTree = "<group>"; };
 		C1F896CD1D71EBAF00CC44C1 /* Licence.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Licence.txt; sourceTree = "<group>"; };
 		C1F896CF1D71EC3400CC44C1 /* LPRTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LPRTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +93,7 @@
 		C12764641D30242E006B219F /* Pray */ = {
 			isa = PBXGroup;
 			children = (
+				C191969A1D8333AE00CB5F38 /* Suppoter Classes */,
 				C1F896CC1D71E9F000CC44C1 /* External APIs */,
 				C16CC7C91D59F5B10061AB7A /* Add View Controllers */,
 				C16CC7C81D59DDE80061AB7A /* View Controllers */,
@@ -125,7 +126,6 @@
 				C125B81E1D64CF7E001CE43D /* Prayer View Controller and sub class */,
 				C1396D141D5535F00048F1FA /* MemberTableViewController.swift */,
 				C12764671D30242E006B219F /* GroupTableViewController.swift */,
-				C1F896CA1D6F638700CC44C1 /* SupporterClass.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -137,6 +137,14 @@
 				C162CAFF1D563C7E00BB17AC /* AddMemberViewController.swift */,
 			);
 			name = "Add View Controllers";
+			sourceTree = "<group>";
+		};
+		C191969A1D8333AE00CB5F38 /* Suppoter Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C14A74511D8361960004697A /* ColourSupporter.swift */,
+			);
+			name = "Suppoter Classes";
 			sourceTree = "<group>";
 		};
 		C1AF9B041D6B256200EB6910 /* My Prayer View Controller and sub class */ = {
@@ -233,7 +241,6 @@
 				C1623A8F1D6A59050008D4A0 /* PrayerModel.swift in Sources */,
 				C162ED1C1D5E15780079D3ED /* PrayerTableViewCellController.swift in Sources */,
 				C162CB001D563C7E00BB17AC /* AddMemberViewController.swift in Sources */,
-				C1F896CB1D6F638700CC44C1 /* SupporterClass.swift in Sources */,
 				C16CC7CB1D5C8CAF0061AB7A /* PrayerViewController.swift in Sources */,
 				C12764681D30242E006B219F /* GroupTableViewController.swift in Sources */,
 				C12764661D30242E006B219F /* AppDelegate.swift in Sources */,
@@ -245,6 +252,7 @@
 				C1435A091D5917DE003F2010 /* MemberModel.swift in Sources */,
 				C1396D151D5535F00048F1FA /* MemberTableViewController.swift in Sources */,
 				C13FB5C61D353A810008A72F /* AddGroupViewController.swift in Sources */,
+				C14A74521D8361960004697A /* ColourSupporter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
