@@ -123,8 +123,12 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupList", for: indexPath) as UITableViewCell
         
-        //** need to understand
         let label = cell.viewWithTag(1000) as! UILabel
+        
+        if indexPath.row == 0 {
+            //cell.backgroundColor = UIColor(red: 169 / 255, green: 221 / 255, blue: 217 / 255, alpha: 1.0)
+            label.textColor = UIColor(red: 35 / 255, green: 181 / 255, blue: 175 / 255, alpha: 1.0)
+        }
         
         let groupList = groupResults!.groupList[(indexPath as NSIndexPath).row]
         
@@ -141,25 +145,43 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
         groupResults.groupList[(destinationIndexPath as NSIndexPath).row] = source
     }
     
-    
-    //Prevents users from deleting 나의 기도제목 group.
-    //Delete function doesn't appear on 나의 기도제목 cell.
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        if (indexPath as NSIndexPath).row != 0 {
-            return UITableViewCellEditingStyle.delete
+    //Activate swipeable editing buttons for cells.
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        //Edit button
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+            self.performSegue(withIdentifier: "EditGroupName", sender: tableView.cellForRow(at: indexPath))
+        }
+        edit.backgroundColor = UIColor(red: 238 / 255, green: 186 / 255, blue: 76 / 255, alpha: 1.0)
+        
+        //Remove button
+        //When button is tapped, an alert popup turns so that the user makes sure.
+        let remove = UITableViewRowAction(style: .normal, title: "Remove") { (action, indexPath) in
+            let myAlertController: UIAlertController = UIAlertController(title: "", message: "그룹을 삭제 하시겠습니까?", preferredStyle: .alert)
+            
+            let yesAction: UIAlertAction = UIAlertAction(title: "예", style: .default) { action -> Void in
+                //Remove action
+                self.groupResults.removeGroup((indexPath as NSIndexPath).row)
+                
+                let indexPaths = [indexPath]
+                tableView.deleteRows(at: indexPaths, with: .automatic)
+            }
+            myAlertController.addAction(yesAction)
+            
+            let noAction: UIAlertAction = UIAlertAction(title: "아니요", style: .default) { action -> Void in
+                //Do some stuff
+            }
+            myAlertController.addAction(noAction)
+            
+            self.present(myAlertController, animated: true, completion: nil)
+            
+        }
+        remove.backgroundColor = UIColor(red: 227 / 255, green: 73 / 255, blue: 59 / 255, alpha: 1.0)
+        
+        if indexPath.row != 0 {
+            return [remove, edit]
         } else {
-            return UITableViewCellEditingStyle.none
+            return [edit]
         }
     }
-    
-    //Group deleting function by swiping over a row.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        groupResults.removeGroup((indexPath as NSIndexPath).row)
-        
-        let indexPaths = [indexPath]
-        tableView.deleteRows(at: indexPaths, with: .automatic)
-    }
-    
-   
 }
 

@@ -151,13 +151,40 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
         }
     }
     
-    //Member deleting function by swiping over a row.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        parentGroup.removeMember((indexPath as NSIndexPath).row)
+    //Activate swipeable editing buttons for cells.
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        //Edit button
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+            self.performSegue(withIdentifier: "EditMemberName", sender: tableView.cellForRow(at: indexPath))
+        }
+        edit.backgroundColor = UIColor(red: 238 / 255, green: 186 / 255, blue: 76 / 255, alpha: 1.0)
         
-        let indexPaths = [indexPath]
-        tableView.deleteRows(at: indexPaths, with: .automatic)
+        //Remove button
+        //When button is tapped, an alert popup turns so that the user makes sure.
+        let remove = UITableViewRowAction(style: .normal, title: "Remove") { (action, indexPath) in
+            let myAlertController: UIAlertController = UIAlertController(title: "", message: "그룹을 삭제 하시겠습니까?", preferredStyle: .alert)
+            
+            let yesAction: UIAlertAction = UIAlertAction(title: "예", style: .default) { action -> Void in
+                //Remove action
+                self.parentGroup.removeMember((indexPath as NSIndexPath).row)
+                
+                let indexPaths = [indexPath]
+                tableView.deleteRows(at: indexPaths, with: .automatic)
+            }
+            myAlertController.addAction(yesAction)
+            
+            let noAction: UIAlertAction = UIAlertAction(title: "아니요", style: .default) { action -> Void in
+                //Do some stuff
+            }
+            myAlertController.addAction(noAction)
+            
+            self.present(myAlertController, animated: true, completion: nil)
+            
+        }
+        remove.backgroundColor = UIColor(red: 227 / 255, green: 73 / 255, blue: 59 / 255, alpha: 1.0)
         
+        return [remove, edit]
     }
+
 
 }

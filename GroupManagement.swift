@@ -20,8 +20,12 @@ class GroupManagement {
     }
    
     func setUpMyPrayerGroup() {
-        let name = "\u{1F64F} 나의 기도제목"
-        if groupList.count == 0 || groupList[0].groupName != name {
+        let oldName = "\u{1F64F} 나의 기도제목"
+        let name = "나의 기도제목"
+        if groupList[0].groupName == oldName {
+            //Replace old name with new name
+            groupList[0].groupName = name
+        } else if groupList.count == 0 || groupList[0].groupName != name {
             groupList.insert(createNewGroupModel(name), at: 0)
             let meMemberModel = MemberModel()
             //There is only one member in my prayer group.
