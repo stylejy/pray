@@ -17,6 +17,7 @@
 		C13FB5C61D353A810008A72F /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13FB5C51D353A810008A72F /* AddGroupViewController.swift */; };
 		C1435A091D5917DE003F2010 /* MemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1435A081D5917DE003F2010 /* MemberModel.swift */; };
 		C14A74521D8361960004697A /* ColourSupporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A74511D8361960004697A /* ColourSupporter.swift */; };
+		C14A74541D8423C50004697A /* PrayerViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A74531D8423C50004697A /* PrayerViewProtocol.swift */; };
 		C1623A8D1D69CA230008D4A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1623A8B1D69CA230008D4A0 /* Main.storyboard */; };
 		C1623A8F1D6A59050008D4A0 /* PrayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1623A8E1D6A59050008D4A0 /* PrayerModel.swift */; };
 		C162CB001D563C7E00BB17AC /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C162CAFF1D563C7E00BB17AC /* AddMemberViewController.swift */; };
@@ -43,6 +44,7 @@
 		C13FB5C51D353A810008A72F /* AddGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupViewController.swift; sourceTree = "<group>"; };
 		C1435A081D5917DE003F2010 /* MemberModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberModel.swift; sourceTree = "<group>"; };
 		C14A74511D8361960004697A /* ColourSupporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourSupporter.swift; sourceTree = "<group>"; };
+		C14A74531D8423C50004697A /* PrayerViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrayerViewProtocol.swift; sourceTree = "<group>"; };
 		C1623A8C1D69CA230008D4A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1623A8E1D6A59050008D4A0 /* PrayerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrayerModel.swift; sourceTree = "<group>"; };
 		C162CAFF1D563C7E00BB17AC /* AddMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
@@ -93,19 +95,28 @@
 		C12764641D30242E006B219F /* Pray */ = {
 			isa = PBXGroup;
 			children = (
-				C191969A1D8333AE00CB5F38 /* Suppoter Classes */,
-				C1F896CC1D71E9F000CC44C1 /* External APIs */,
+				C14A74551D8423D30004697A /* Protocols */,
 				C16CC7C91D59F5B10061AB7A /* Add View Controllers */,
 				C16CC7C81D59DDE80061AB7A /* View Controllers */,
 				C16CC7C71D59DD960061AB7A /* Models */,
-				C12764651D30242E006B219F /* AppDelegate.swift */,
+				C191969A1D8333AE00CB5F38 /* Suppoter Classes */,
 				C1623A8B1D69CA230008D4A0 /* Main.storyboard */,
+				C12764651D30242E006B219F /* AppDelegate.swift */,
 				C127646C1D30242E006B219F /* Assets.xcassets */,
 				C127646E1D30242E006B219F /* LaunchScreen.storyboard */,
 				C12764711D30242E006B219F /* Info.plist */,
 				C1F896CD1D71EBAF00CC44C1 /* Licence.txt */,
+				C1F896CC1D71E9F000CC44C1 /* External APIs */,
 			);
 			path = Pray;
+			sourceTree = "<group>";
+		};
+		C14A74551D8423D30004697A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C14A74531D8423C50004697A /* PrayerViewProtocol.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		C16CC7C71D59DD960061AB7A /* Models */ = {
@@ -241,6 +252,7 @@
 				C1623A8F1D6A59050008D4A0 /* PrayerModel.swift in Sources */,
 				C162ED1C1D5E15780079D3ED /* PrayerTableViewCellController.swift in Sources */,
 				C162CB001D563C7E00BB17AC /* AddMemberViewController.swift in Sources */,
+				C14A74541D8423C50004697A /* PrayerViewProtocol.swift in Sources */,
 				C16CC7CB1D5C8CAF0061AB7A /* PrayerViewController.swift in Sources */,
 				C12764681D30242E006B219F /* GroupTableViewController.swift in Sources */,
 				C12764661D30242E006B219F /* AppDelegate.swift in Sources */,

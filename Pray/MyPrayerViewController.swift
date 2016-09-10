@@ -1,7 +1,7 @@
 //
 //  MyPrayerViewController.swift
-//  Pray
-//
+//  Praying
+//  Thanks God for all.
 //  Created by 이주영 on 22/08/2016.
 //  Copyright © 2016 이주영. All rights reserved.
 //
@@ -12,16 +12,18 @@ protocol MyPrayerViewControllerDelegate: class {
     func myPrayerViewController(_ controller: MyPrayerViewController)
 }
 
-class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, PrayerViewProtocol {
     var me: MemberModel!
     var tempIndexPath: IndexPath?
+    var isEditingMode: Bool? = false
     
     let doneBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(MyPrayerViewController.doneBarButtonAction))
     //addBarButton should not be weak to be changeable with doneBarButton.
     @IBOutlet var addBarButton: UIBarButtonItem!
     @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var tableView: LPRTableView!
-    @IBOutlet weak var segmentedControllerForAdding: UISegmentedControl!
+    //** When the controller is assigned, addBarButtonAction should change.
+    //@IBOutlet weak var segmentedControllerForAdding: UISegmentedControl!
     @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -36,23 +38,32 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //inputTextView.becomeFirstResponder()
+        NotificationCenter.default.addObserver(self, selector: #selector(MyPrayerViewController.resizeTableViewWithKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MyPrayerViewController.resizeTableViewWithoutKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
  
 //START - Actions
     @IBAction func addBarButtonAction() {
         let newPrayer = PrayerModel()
         newPrayer.prayer = inputTextView.text
-        if segmentedControllerForAdding.selectedSegmentIndex == 0 {
+        newPrayer.isOpen = true
+        
+        //** The lines below are only used with the segmentedController
+        /*if segmentedControllerForAdding.selectedSegmentIndex == 0 {
             newPrayer.isOpen = true
-        }
+        }*/
+        newPrayer.isOpen = true
+        
         me.prayers.append(newPrayer)
         inputTextView.text = ""
         inputTextView.resignFirstResponder()
         addBarButton.isEnabled = false
         self.tableView.reloadData()
         leftBarItemController(false)
-        //delegate?.myPrayerViewController(self)
     }
     
     func doneBarButtonAction() {
@@ -69,7 +80,6 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
     @IBAction func cancelBarButtonAction() {
         inputTextView.text = ""
         inputTextView.resignFirstResponder()
-        
         changeControllerSet(false)
     }
 //END - Actions
@@ -78,11 +88,20 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
     func changeControllerSet(_ switchValue: Bool) {
         leftBarItemController(switchValue)
         //The next lines are only needed with doneBarButton.
-        if self.navigationItem.rightBarButtonItem == doneBarButton {
+        if self.navigationItem.rightBarButtonItem == doneBarButton || switchValue == true {
             rightBarItemController(switchValue)
             selectedCellController(switchValue)
             changeDescriptionTitle(switchValue)
             changeColour(switchValue)
+        }
+        
+        //When editing mode, long press reorder function is unenabled to not make any problems.
+        if switchValue == true {
+            tableView.longPressReorderEnabled = false
+            isEditingMode = true
+        } else {
+            tableView.longPressReorderEnabled = true
+            isEditingMode = false
         }
     }
     
@@ -113,10 +132,7 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
     func selectedCellController(_ switchValue: Bool) {
         if switchValue == true {
             //** Makes a cell sliding in
-            self.tableView.setEditing(false, animated: true)
-            self.tableView.isUserInteractionEnabled = false
-        } else {
-            self.tableView.isUserInteractionEnabled = true
+            tableView.setEditing(false, animated: true)
         }
     }
     
@@ -151,7 +167,8 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
         }
     }
 //END - Change Controllers
-    
+
+//START - View related functions called by super class or delegates
     //Used to display the cancel bar button and hide the back button when the text view is tapped and the keyboard appears.
     func textViewDidBeginEditing(_ textView: UITextView) {
         leftBarItemController(true)
@@ -213,8 +230,6 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
         me.prayers[(destinationIndexPath as NSIndexPath).row] = source
     }
     
-    
-    
     //Activate swipeable editing buttons for cells.
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         //Edit button
@@ -222,42 +237,74 @@ class MyPrayerViewController: UIViewController, UITextViewDelegate, UITableViewD
             self.inputTextView.text = self.me.prayers[indexPath.row].prayer
             self.inputTextView.becomeFirstResponder()
             
+            //This if statement is used to put the previous selected cell's settings back.
+            if self.navigationItem.rightBarButtonItem == self.doneBarButton {
+                self.changeColour(false)
+                self.selectedCellController(false)
+            }
+            
             //This is used for doneBarButtonAction function.
             self.tempIndexPath = indexPath
             
-            self.rightBarItemController(true)
-            self.changeColour(true)
+            self.changeControllerSet(true)
             
-            self.selectedCellController(true)
-            
-            self.changeDescriptionTitle(true)
+            self.scrollToRow(selectedRow: indexPath)
         }
         edit.backgroundColor = UIColor(red: 238 / 255, green: 186 / 255, blue: 76 / 255, alpha: 1.0)
         
         //Remove button
         //When button is tapped, an alert popup turns so that the user makes sure.
         let remove = UITableViewRowAction(style: .normal, title: "Remove") { (action, indexPath) in
-            let myAlertController: UIAlertController = UIAlertController(title: "", message: "기도제목을 삭제 하시겠습니까?", preferredStyle: .alert)
-            
-            let yesAction: UIAlertAction = UIAlertAction(title: "예", style: .default) { action -> Void in
-                //Remove action
-                self.me.removePrayer((indexPath as NSIndexPath).row)
-                
-                let indexPaths = [indexPath]
-                tableView.deleteRows(at: indexPaths, with: .automatic)
-            }
-            myAlertController.addAction(yesAction)
-            
-            let noAction: UIAlertAction = UIAlertAction(title: "아니요", style: .default) { action -> Void in
-                
-            }
-            myAlertController.addAction(noAction)
-            
-            self.present(myAlertController, animated: true, completion: nil)
-            
+            self.alertForRemove(inputIndexPath: indexPath)
         }
         remove.backgroundColor = UIColor(red: 227 / 255, green: 73 / 255, blue: 59 / 255, alpha: 1.0)
         
-        return [remove, edit]
+        //When editing mode, only edit button appears, otherwise the all buttons come.
+        if isEditingMode == false {
+            return [remove, edit]
+        } else {
+            return [edit]
+        }
     }
+//END - View related functions called by super class or delegates
+    
+//START - TableView resize and scrolling to the selected row(in editing mode only) when keyboard appears
+    func resizeTableViewWithKeyboard(notification: Notification) {
+        if let userInfo = notification.userInfo {
+            if let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                //Offset to show all cells are visible above the keyboard.
+                tableView.contentInset.bottom = keyboardSize.size.height
+            }
+        }
+    }
+    
+    func resizeTableViewWithoutKeyboard(notification: Notification) {
+        tableView.contentInset.bottom = UIEdgeInsets.zero.bottom
+    }
+    
+    func scrollToRow(selectedRow indexPath: IndexPath) {
+        tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.middle, animated: true)
+    }
+//END - TableView resize and scrolling to the selected row(in editing mode only) when keyboard appears
+    
+    func alertForRemove(inputIndexPath indexPath: IndexPath) {
+        let myAlertController: UIAlertController = UIAlertController(title: "", message: "기도제목을 삭제 하시겠습니까?", preferredStyle: .alert)
+        
+        let yesAction: UIAlertAction = UIAlertAction(title: "예", style: .default) { action -> Void in
+            //Remove action
+            self.me.removePrayer((indexPath as NSIndexPath).row)
+            
+            let indexPaths = [indexPath]
+            self.tableView.deleteRows(at: indexPaths, with: .automatic)
+        }
+        myAlertController.addAction(yesAction)
+        
+        let noAction: UIAlertAction = UIAlertAction(title: "아니요", style: .default) { action -> Void in
+            
+        }
+        myAlertController.addAction(noAction)
+        
+        self.present(myAlertController, animated: true, completion: nil)
+    }
+    
 }

@@ -82,10 +82,12 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
             controller.delegate = self
         } else if segue.identifier == "EditGroupName" {
             let navigationController = segue.destination as! UINavigationController
-            
+            let colour = ColourSupporter()
             let controller = navigationController.topViewController as! AddGroupViewController
             
             controller.delegate = self
+            //Change colour to colour scheme's yellow.
+            controller.navigationController?.navigationBar.barTintColor = colour.yellow
             
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
                 controller.groupToEdit = groupResults!.groupList[(indexPath as NSIndexPath).row]
@@ -150,6 +152,7 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
         //Edit button
         let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
             self.performSegue(withIdentifier: "EditGroupName", sender: tableView.cellForRow(at: indexPath))
+            self.tableView.setEditing(false, animated: true)
         }
         edit.backgroundColor = UIColor(red: 238 / 255, green: 186 / 255, blue: 76 / 255, alpha: 1.0)
         

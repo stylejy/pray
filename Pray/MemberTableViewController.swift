@@ -131,11 +131,13 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
             controller.delegate = self
         } else if segue.identifier == "EditMemberName" {
             let navigationController = segue.destination as! UINavigationController
-            
+            let colour = ColourSupporter()
             let controller = navigationController.topViewController as! AddMemberViewController
             
             controller.delegate = self
-                        
+            //Change colour to colour scheme's yellow.
+            controller.navigationController?.navigationBar.barTintColor = colour.yellow
+            
             //Initialise memberToEdit variable in AddMemberViewController class.
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
                 controller.memberToEdit = parentGroup.groupMembers[(indexPath as NSIndexPath).row]
@@ -156,6 +158,7 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
         //Edit button
         let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
             self.performSegue(withIdentifier: "EditMemberName", sender: tableView.cellForRow(at: indexPath))
+            self.tableView.setEditing(false, animated: true)
         }
         edit.backgroundColor = UIColor(red: 238 / 255, green: 186 / 255, blue: 76 / 255, alpha: 1.0)
         
