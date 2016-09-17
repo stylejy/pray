@@ -1,7 +1,7 @@
 //
 //  MainTableViewController.swift
-//  Pray
-//
+//  Praying
+//  Thanks God for all.
 //  Created by 이주영 on 05/08/2016.
 //  Copyright © 2016 이주영. All rights reserved.
 //
@@ -146,7 +146,7 @@ class MemberTableViewController: UITableViewController, AddMemberViewControllerD
             let controller = segue.destination as! PrayerViewController
             
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
-                controller.member = parentGroup.groupMembers[(indexPath as NSIndexPath).row]
+                controller.model = parentGroup.groupMembers[(indexPath as NSIndexPath).row]
             }
             
             controller.delegate = self

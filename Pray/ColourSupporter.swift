@@ -1,7 +1,7 @@
 //
 //  ColourSupporter.swift
-//  Pray
-//
+//  Praying
+//  Thanks God for all.
 //  Created by 이주영 on 09/09/2016.
 //  Copyright © 2016 이주영. All rights reserved.
 //

@@ -1,6 +1,7 @@
 //
 //  ViewController.swift
 //  Pray
+//  Thanks God for all.
 //  Created by 이주영 on 08/07/2016.
 //  Copyright © 2016 이주영. All rights reserved.
 //
@@ -101,7 +102,7 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
         } else if segue.identifier == "MyPrayerManagement" {
             let controller = segue.destination as! MyPrayerViewController
             
-            controller.me = groupResults.groupList[0].groupMembers[0]
+            controller.model = groupResults.groupList[0].groupMembers[0]
             
 
         }

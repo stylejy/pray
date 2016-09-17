@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W9Q-j2-O3T" id="Jg7-fY-YhV">
-                                    <frame key="frameInset" width="375" height="62"/>
+                                    <frame key="frameInset" width="375" height="61"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="918-Ek-kYU">
@@ -88,18 +88,18 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bnw-CL-nzB" id="gAZ-5M-Uur">
-                                    <frame key="frameInset" width="375" height="62"/>
+                                    <frame key="frameInset" width="375" height="61"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O0L-6z-ruY">
-                                            <frame key="frameInset" minX="15" minY="13" width="34" height="22"/>
+                                            <frame key="frameInset" minX="15" minY="12" width="34" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="18"/>
                                             <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="기도제목을 입력해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g0R-HB-k6f">
-                                            <frame key="frameInset" minX="15" minY="35" width="120.5" height="14.5"/>
+                                            <frame key="frameInset" minX="15" minY="34" width="121" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                             <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -169,7 +169,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hI6-zt-AqS" id="dJh-xD-fX6">
-                                            <frame key="frameInset" width="375" height="62"/>
+                                            <frame key="frameInset" width="375" height="61"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prayer" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoD-fM-mcP">
@@ -241,11 +241,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="AddBarButton" destination="TUh-vq-5nl" id="Ztw-Rk-usV"/>
-                        <outlet property="addBarButton" destination="TUh-vq-5nl" id="paj-BW-hLR"/>
-                        <outlet property="cancelBarButton" destination="HrZ-mm-bei" id="2d9-Tf-HnY"/>
-                        <outlet property="inputTextView" destination="95M-5R-uej" id="ZqP-1p-A4n"/>
-                        <outlet property="tableView" destination="lcb-K1-caW" id="KGF-Zd-ENE"/>
+                        <outlet property="prayerAddBarButton" destination="TUh-vq-5nl" id="I8I-0A-Ch9"/>
+                        <outlet property="prayerCancelBarButton" destination="HrZ-mm-bei" id="eKm-7s-CTy"/>
+                        <outlet property="prayerInputTextView" destination="95M-5R-uej" id="FBU-sT-EL6"/>
+                        <outlet property="prayerTableView" destination="lcb-K1-caW" id="CqI-wy-yDo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xa4-EX-RmR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -267,7 +266,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j33-ym-ggJ" id="gp2-Ab-4Hs">
-                                            <frame key="frameInset" width="375" height="44"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="그룹 이름을 입력 하세요." textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uUz-JB-WSO">
@@ -327,7 +326,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V2N-lZ-odg" id="lUu-p6-WaG">
-                                            <frame key="frameInset" width="375" height="44"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="멤버 이름을 입력 하세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xlb-Oj-idJ">
@@ -426,7 +425,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bzf-dJ-cdX" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="CEw-VT-Ufz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="CEw-VT-Ufz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -515,8 +514,8 @@
                                         </tableViewCellContentView>
                                         <color key="tintColor" red="0.66274509800000003" green="0.86666666670000003" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="myPrayerListLabel" destination="Hsa-U2-92H" id="QHL-TC-2oG"/>
                                             <outlet property="prayerDetails" destination="xHj-tH-Pqk" id="7CR-oW-yME"/>
+                                            <outlet property="prayerListLabel" destination="Hsa-U2-92H" id="t6X-o3-QuB"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -548,10 +547,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addBarButton" destination="Rjm-9a-qsX" id="v9H-RU-6kE"/>
                         <outlet property="cancelBarButton" destination="3Ju-1n-MMO" id="RFg-LC-gTJ"/>
-                        <outlet property="inputTextView" destination="IMD-wK-dei" id="9Gg-vB-5T8"/>
-                        <outlet property="tableView" destination="re4-EW-aCc" id="3JX-Uf-7Xc"/>
+                        <outlet property="myPrayerAddBarButton" destination="Rjm-9a-qsX" id="Caw-ui-RjV"/>
+                        <outlet property="myPrayerCancelBarButton" destination="3Ju-1n-MMO" id="EjC-Bt-xRd"/>
+                        <outlet property="myPrayerInputTextView" destination="IMD-wK-dei" id="X8j-kL-teT"/>
+                        <outlet property="myPrayerTableView" destination="re4-EW-aCc" id="NpS-dv-Tmm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Z3-Vg-mc7" userLabel="First Responder" sceneMemberID="firstResponder"/>

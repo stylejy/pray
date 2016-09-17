@@ -1,7 +1,7 @@
 //
 //  GroupManagement.swift
-//  Pray
-//
+//  Praying
+//  Thanks God for all.
 //  Created by 이주영 on 11/07/2016.
 //  Copyright © 2016 이주영. All rights reserved.
 //
@@ -22,14 +22,14 @@ class GroupManagement {
     func setUpMyPrayerGroup() {
         let oldName = "\u{1F64F} 나의 기도제목"
         let name = "나의 기도제목"
-        if groupList[0].groupName == oldName {
-            //Replace old name with new name
-            groupList[0].groupName = name
-        } else if groupList.count == 0 || groupList[0].groupName != name {
+        if groupList.count == 0 || groupList[0].groupName != name {
             groupList.insert(createNewGroupModel(name), at: 0)
             let meMemberModel = MemberModel()
             //There is only one member in my prayer group.
             groupList[0].groupMembers.append(meMemberModel)
+        } else if groupList[0].groupName == oldName {
+            //Replace old name with new name
+            groupList[0].groupName = name
         }
     }
     
