@@ -189,10 +189,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="7yC-k4-NmI" firstAttribute="top" secondItem="hoD-fM-mcP" secondAttribute="bottom" constant="6" id="5K1-4c-raS"/>
-                                                <constraint firstAttribute="trailing" secondItem="hoD-fM-mcP" secondAttribute="trailing" id="AWe-wA-6MY"/>
+                                                <constraint firstAttribute="trailing" secondItem="hoD-fM-mcP" secondAttribute="trailing" constant="17" id="AWe-wA-6MY"/>
                                                 <constraint firstItem="hoD-fM-mcP" firstAttribute="trailing" secondItem="7yC-k4-NmI" secondAttribute="trailing" id="Vh3-bQ-Tij"/>
                                                 <constraint firstItem="hoD-fM-mcP" firstAttribute="leading" secondItem="dJh-xD-fX6" secondAttribute="leadingMargin" constant="8" id="ZLp-jZ-L29"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="7yC-k4-NmI" secondAttribute="bottom" id="kNy-7k-eqn"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="7yC-k4-NmI" secondAttribute="bottom" constant="-1" id="kNy-7k-eqn"/>
                                                 <constraint firstItem="hoD-fM-mcP" firstAttribute="leading" secondItem="7yC-k4-NmI" secondAttribute="leading" id="pur-SS-nda"/>
                                                 <constraint firstItem="hoD-fM-mcP" firstAttribute="top" secondItem="dJh-xD-fX6" secondAttribute="topMargin" id="sx3-P5-0nf"/>
                                             </constraints>
@@ -491,7 +491,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last updated date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHj-tH-Pqk">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="R0T-3b-vcL"/>
-                                                        <constraint firstAttribute="width" constant="292" id="fsq-SC-9sT"/>
+                                                        <constraint firstAttribute="width" constant="342" id="fsq-SC-9sT"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                     <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -504,11 +504,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="xHj-tH-Pqk" secondAttribute="bottom" constant="-3" id="4FN-hL-Cti"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="xHj-tH-Pqk" secondAttribute="bottom" constant="-4" id="4FN-hL-Cti"/>
                                                 <constraint firstItem="Hsa-U2-92H" firstAttribute="leading" secondItem="xHj-tH-Pqk" secondAttribute="leading" id="61N-8D-pkU"/>
                                                 <constraint firstItem="Hsa-U2-92H" firstAttribute="top" secondItem="1n4-YM-XaF" secondAttribute="topMargin" id="Vy9-WY-m3e"/>
                                                 <constraint firstItem="xHj-tH-Pqk" firstAttribute="leading" secondItem="1n4-YM-XaF" secondAttribute="leadingMargin" constant="8" id="hWr-DG-Zgy"/>
-                                                <constraint firstAttribute="trailing" secondItem="Hsa-U2-92H" secondAttribute="trailing" id="tpc-Uq-1a1"/>
+                                                <constraint firstAttribute="trailing" secondItem="Hsa-U2-92H" secondAttribute="trailing" constant="17" id="tpc-Uq-1a1"/>
                                                 <constraint firstItem="xHj-tH-Pqk" firstAttribute="top" secondItem="Hsa-U2-92H" secondAttribute="bottom" constant="6" id="zpY-7E-95h"/>
                                             </constraints>
                                         </tableViewCellContentView>

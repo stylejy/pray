@@ -70,8 +70,9 @@ class CentralViewController: UIViewController, UITextViewDelegate, UITableViewDe
         inputTextView.text = ""
         inputTextView.resignFirstResponder()
         addBarButton.isEnabled = false
-        self.tableView.reloadData()
+        
         leftBarItemController(false)
+        self.tableView.reloadData()
     }
     
     func doneBarButtonAction() {
@@ -79,9 +80,10 @@ class CentralViewController: UIViewController, UITextViewDelegate, UITableViewDe
         model.prayers[tempIndexPath!.row].date = Date()
         inputTextView.text = ""
         inputTextView.resignFirstResponder()
-        self.tableView.reloadData()
         
         changeControllerSet(false)
+        //reloadData function should be called at the end of the sequence.
+        self.tableView.reloadData()
     }
     
     //It clears the text view and hide the keyboard
@@ -103,7 +105,7 @@ class CentralViewController: UIViewController, UITextViewDelegate, UITableViewDe
             changeColour(switchValue)
         }
         
-        //When editing mode, long press reorder function is unenabled to not make any problems.
+        //When editing mode, long press reorder function is unable to not make any problems.
         if switchValue == true {
             tableView.longPressReorderEnabled = false
             isEditingMode = true
@@ -205,7 +207,7 @@ class CentralViewController: UIViewController, UITextViewDelegate, UITableViewDe
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if textView.restorationIdentifier! == "InputForMe" {
+        if textView.restorationIdentifier! == "InputForMe" || textView.restorationIdentifier! == "Input" {
             let oldText: NSString = inputTextView.text! as NSString
             let newText: NSString = oldText.replacingCharacters(in: range, with: text) as NSString
             addBarButton.isEnabled = (newText.length > 0)
@@ -277,7 +279,7 @@ class CentralViewController: UIViewController, UITextViewDelegate, UITableViewDe
         }
     }
     
-    //Used to move data from a source index to a destination index when moveing a cell.
+    //Used to move data from a source index to a destination index when moving a cell.
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let source = model.prayers[(sourceIndexPath as NSIndexPath).row]
         let destination = model.prayers[(destinationIndexPath as NSIndexPath).row]
