@@ -148,6 +148,15 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
         groupResults.groupList[(destinationIndexPath as NSIndexPath).row] = source
     }
     
+    //Make the first group is not swipeable.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row != 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     //Activate swipeable editing buttons for cells.
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         //Edit button
@@ -184,7 +193,7 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
         if indexPath.row != 0 {
             return [remove, edit]
         } else {
-            return [edit]
+            return nil
         }
     }
 }
