@@ -11,11 +11,35 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    //MS Azure
+    var client: MSClient?
+    
     var window: UIWindow?
 
     let groupManagement = GroupManagement()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        //Azure
+        self.client = MSClient(
+            applicationURLString:"https://praying.azurewebsites.net"
+        )
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let client = delegate.client!
+        let item = ["Name":"Brian yoon"]
+        let itemTable = client.table(withName: "PRAYERS_PROFILE")
+        itemTable.insert(item) {
+            (insertedItem, error) in
+            if (error != nil) {
+                print("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror")
+                print(error);
+            } else {
+                print("iddddddddddddddddddddddddddddddddddddddd")
+                print(insertedItem!["id"])
+            }
+        }
+        
+        //Azure end
         
         let navigationController = window!.rootViewController as! UINavigationController
         let controller = navigationController.viewControllers[0] as! GroupTableViewController

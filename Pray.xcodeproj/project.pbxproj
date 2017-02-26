@@ -23,9 +23,12 @@
 		C162CB001D563C7E00BB17AC /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C162CAFF1D563C7E00BB17AC /* AddMemberViewController.swift */; };
 		C162ED1C1D5E15780079D3ED /* PrayerTableViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C162ED1B1D5E15780079D3ED /* PrayerTableViewCellController.swift */; };
 		C16CC7CB1D5C8CAF0061AB7A /* PrayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16CC7CA1D5C8CAF0061AB7A /* PrayerViewController.swift */; };
+		C189F0291E58B2F8004C85F2 /* MicrosoftAzureMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C189F0281E58B2F8004C85F2 /* MicrosoftAzureMobile.framework */; };
 		C1AF9B061D6B259D00EB6910 /* MyPrayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF9B051D6B259D00EB6910 /* MyPrayerViewController.swift */; };
 		C1AF9B081D6CA5B800EB6910 /* MyPrayerTableViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF9B071D6CA5B800EB6910 /* MyPrayerTableViewCellController.swift */; };
 		C1B7612B1D8D818600ABEF3D /* CentralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B7612A1D8D818600ABEF3D /* CentralViewController.swift */; };
+		C1E2C58D1E58BA09008DD360 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E2C58C1E58BA09008DD360 /* SafariServices.framework */; };
+		C1E2C58F1E58BA32008DD360 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E2C58E1E58BA32008DD360 /* WebKit.framework */; };
 		C1F896CE1D71EBAF00CC44C1 /* Licence.txt in Resources */ = {isa = PBXBuildFile; fileRef = C1F896CD1D71EBAF00CC44C1 /* Licence.txt */; };
 		C1F896D01D71EC3400CC44C1 /* LPRTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F896CF1D71EC3400CC44C1 /* LPRTableView.swift */; };
 /* End PBXBuildFile section */
@@ -51,9 +54,13 @@
 		C162CAFF1D563C7E00BB17AC /* AddMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
 		C162ED1B1D5E15780079D3ED /* PrayerTableViewCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrayerTableViewCellController.swift; sourceTree = "<group>"; };
 		C16CC7CA1D5C8CAF0061AB7A /* PrayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrayerViewController.swift; sourceTree = "<group>"; };
+		C189F0271E58B235004C85F2 /* Pray-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pray-Bridging-Header.h"; sourceTree = "<group>"; };
+		C189F0281E58B2F8004C85F2 /* MicrosoftAzureMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftAzureMobile.framework; sourceTree = "<group>"; };
 		C1AF9B051D6B259D00EB6910 /* MyPrayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrayerViewController.swift; sourceTree = "<group>"; };
 		C1AF9B071D6CA5B800EB6910 /* MyPrayerTableViewCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrayerTableViewCellController.swift; sourceTree = "<group>"; };
 		C1B7612A1D8D818600ABEF3D /* CentralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralViewController.swift; sourceTree = "<group>"; };
+		C1E2C58C1E58BA09008DD360 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		C1E2C58E1E58BA32008DD360 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		C1F896CD1D71EBAF00CC44C1 /* Licence.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Licence.txt; sourceTree = "<group>"; };
 		C1F896CF1D71EC3400CC44C1 /* LPRTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LPRTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +70,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1E2C58F1E58BA32008DD360 /* WebKit.framework in Frameworks */,
+				C1E2C58D1E58BA09008DD360 /* SafariServices.framework in Frameworks */,
+				C189F0291E58B2F8004C85F2 /* MicrosoftAzureMobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +93,7 @@
 			children = (
 				C12764641D30242E006B219F /* Pray */,
 				C12764631D30242E006B219F /* Products */,
+				C189F0231E58B1C9004C85F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +120,7 @@
 				C12764711D30242E006B219F /* Info.plist */,
 				C1F896CD1D71EBAF00CC44C1 /* Licence.txt */,
 				C1F896CC1D71E9F000CC44C1 /* External APIs */,
+				C189F0271E58B235004C85F2 /* Pray-Bridging-Header.h */,
 			);
 			path = Pray;
 			sourceTree = "<group>";
@@ -151,6 +163,16 @@
 				C162CAFF1D563C7E00BB17AC /* AddMemberViewController.swift */,
 			);
 			name = "Add View Controllers";
+			sourceTree = "<group>";
+		};
+		C189F0231E58B1C9004C85F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C1E2C58E1E58BA32008DD360 /* WebKit.framework */,
+				C1E2C58C1E58BA09008DD360 /* SafariServices.framework */,
+				C189F0281E58B2F8004C85F2 /* MicrosoftAzureMobile.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C191969A1D8333AE00CB5F38 /* Suppoter Classes */ = {
@@ -390,10 +412,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Pray/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = STyLEjY.Pray;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pray/Pray-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -402,10 +429,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Pray/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = STyLEjY.Pray;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pray/Pray-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
