@@ -10,6 +10,7 @@ import UIKit
 
 class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDelegate {
     var groupResults: GroupManagement!
+    var accountStatus: AccountStatus!
     
     @IBOutlet var tableViewFromStoryboard: LPRTableView!
     
@@ -111,6 +112,10 @@ class GroupTableViewController: LPRTableViewController, AddGroupViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        // if it is the first time the user runs the app, the initial member control scene turns up.
+        if accountStatus.initialInquiryForOnlineMode == false {
+            performSegue(withIdentifier: "InitialMemberControl", sender: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {

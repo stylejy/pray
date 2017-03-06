@@ -10,17 +10,17 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    //Check the account is an online account.
-    var isOnlineAccount = false
-    
+ 
     //MS Azure.
     var client: MSClient?
     
     var window: UIWindow?
 
     let groupManagement = GroupManagement()
+    let accountStatus = AccountStatus()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        
         
         //Azure
         self.client = MSClient(
@@ -40,12 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(insertedItem!["id"])
             }
         }
-        
+ 
         //Azure end
+ 
         
         let navigationController = window!.rootViewController as! UINavigationController
         let controller = navigationController.viewControllers[0] as! GroupTableViewController
         controller.groupResults = groupManagement
+        controller.accountStatus = accountStatus
         
         return true
     }
