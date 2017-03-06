@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A319" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ysz-yZ-aJ4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16E175b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ysz-yZ-aJ4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W9Q-j2-O3T" id="Jg7-fY-YhV">
-                                    <frame key="frameInset" width="375" height="61"/>
+                                    <frame key="frameInset" width="375" height="62"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="918-Ek-kYU">
@@ -68,6 +68,7 @@
                         <outlet property="tableViewFromStoryboard" destination="Npw-sA-thb" id="ZuY-1k-GfT"/>
                         <segue destination="BEG-T8-Ftr" kind="show" identifier="ShowMemberList" id="wfs-kM-4fl"/>
                         <segue destination="dul-K3-Tni" kind="show" identifier="MyPrayerManagement" id="yr0-YN-wiP"/>
+                        <segue destination="OVn-OC-8Rd" kind="presentation" identifier="InitialMemberControl" id="VSk-4m-BHL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTx-jq-rFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -88,18 +89,18 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bnw-CL-nzB" id="gAZ-5M-Uur">
-                                    <frame key="frameInset" width="375" height="61"/>
+                                    <frame key="frameInset" width="375" height="62"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O0L-6z-ruY">
-                                            <frame key="frameInset" minX="15" minY="12" width="34" height="22"/>
+                                            <frame key="frameInset" minX="15" minY="13" width="34" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="18"/>
                                             <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="기도제목을 입력해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g0R-HB-k6f">
-                                            <frame key="frameInset" minX="15" minY="34" width="121" height="15"/>
+                                            <frame key="frameInset" minX="15" minY="35" width="120.5" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                             <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -169,7 +170,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hI6-zt-AqS" id="dJh-xD-fX6">
-                                            <frame key="frameInset" width="375" height="61"/>
+                                            <frame key="frameInset" width="375" height="62"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prayer" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoD-fM-mcP">
@@ -266,7 +267,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j33-ym-ggJ" id="gp2-Ab-4Hs">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="그룹 이름을 입력 하세요." textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uUz-JB-WSO">
@@ -326,7 +327,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V2N-lZ-odg" id="lUu-p6-WaG">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="멤버 이름을 입력 하세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xlb-Oj-idJ">
@@ -444,6 +445,24 @@
             </objects>
             <point key="canvasLocation" x="2950" y="1209"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="C62-00-R0v">
+            <objects>
+                <viewController id="OVn-OC-8Rd" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4tk-jH-nz0"/>
+                        <viewControllerLayoutGuide type="bottom" id="wjK-IP-4fX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="igd-5f-YKR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qvP-jt-lfE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2110" y="-342"/>
+        </scene>
         <!--나의 기도제목-->
         <scene sceneID="QPx-Ba-Wg0">
             <objects>
@@ -485,7 +504,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qfv-b7-Z4I" id="1n4-YM-XaF">
-                                            <frame key="frameInset" width="375" height="64"/>
+                                            <frame key="frameInset" width="375" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last updated date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHj-tH-Pqk">
@@ -556,11 +575,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Z3-Vg-mc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2109.5999999999999" y="-341.37931034482762"/>
+            <point key="canvasLocation" x="2950" y="-342"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LrS-EX-OsL"/>
+        <segue reference="Ngu-xf-kgq"/>
         <segue reference="UR5-OG-RGv"/>
     </inferredMetricsTieBreakers>
 </document>

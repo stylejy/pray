@@ -10,8 +10,10 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    //MS Azure
+    //Check the account is an online account.
+    var isOnlineAccount = false
+    
+    //MS Azure.
     var client: MSClient?
     
     var window: UIWindow?
